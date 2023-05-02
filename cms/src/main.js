@@ -10,7 +10,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en'
 import VueHtmlToPaper from 'vue-html-to-paper';
-var AppURL = 'http://localhost:8001';
+var AppURL = 'http://localhost:8015';
 // var AppURL = 'https://api.itlab.mn';
 
 Vue.config.productionTip = false
