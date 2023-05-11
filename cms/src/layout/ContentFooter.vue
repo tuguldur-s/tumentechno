@@ -9,7 +9,7 @@
       <div class="col-lg-6">
         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
           <li class="nav-item">
-            <a href="https://www.itlab.mn" class="nav-link" target="_blank">ITLAB.mn</a>
+            <a href="https://www.tumentechno.mn" class="nav-link" target="_blank">tumentechno.mn</a>
           </li>
         </ul>
       </div>

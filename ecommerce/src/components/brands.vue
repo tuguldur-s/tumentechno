@@ -16,7 +16,7 @@
             <!-- Footer-top-widget -->
             <div class="container d-none d-lg-block mb-3">
                 <div class="row">
-                    <div class="col-wd-3 col-lg-4">
+                    <div class="col-wd-4 col-lg-4">
                         <div class="widget-column">
                             <div class="border-bottom border-color-1 mb-5">
                                 <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Санал болгох</h3>
@@ -36,7 +36,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-wd-3 col-lg-4">
+                    <div class="col-wd-4 col-lg-4">
                         <div class="border-bottom border-color-1 mb-5">
                             <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Хямдралтай</h3>
                         </div>
@@ -55,7 +55,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-wd-3 col-lg-4">
+                    <div class="col-wd-4 col-lg-4">
                         <div class="border-bottom border-color-1 mb-5">
                             <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Өндөр үнэлгээтэй</h3>
                         </div>
@@ -80,15 +80,11 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-wd-3 d-none d-wd-block">
-                        <!-- <a href="../shop/shop.html" class="d-block"><img class="img-fluid" src="@/assets/images/product/default.png" alt="Image Description"></a> -->
-                        <iframe width="350" height="250" src="https://www.youtube.com/embed/AlTF6VhVzPM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
                 </div>
             </div>
             <!-- End Footer-top-widget -->
             <!-- Footer-newsletter -->
-            <div class="bg-primary py-3">
+            <!-- <div class="bg-primary py-3">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-12 mb-md-3 mb-lg-0" align="center">
@@ -100,7 +96,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- End Footer-newsletter -->
             <!-- Footer-bottom-widgets -->
             <div class="pt-8 pb-4 bg-gray-13">
@@ -119,14 +115,16 @@
                                     </div>
                                     <div class="col pl-3">
                                         <div class="font-size-13 font-weight-light">Бидэнтэй холбогдохыг хүсвэл</div>
-                                        <a href="tel:+97675117733" class="font-size-20 text-gray-90">(976) 7511-7733, </a>
+                                        <a href="tel:+97675117733" class="font-size-20 text-gray-90">(976) 8630-6010, </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-4">
                                 <h6 class="mb-1 font-weight-bold">Хаяг</h6>
                                 <address class="">
-                                    Монгол улс, Улаанбаатар хот, ЧД 1-р хороо, 1-р 40 50 мянгат, <br> Ноён хутагт Данзанравжаа гудамж 17/1 барилга 3-302 тоот
+
+                                    Монгол улс, Улаанбаатар хот, СБД 6-р хороо<br>НҮБ-н гудамж, 3-35 тоот
+                                    <!-- Монгол улс, Улаанбаатар хот, ЧД 1-р хороо, 1-р 40 50 мянгат, <br> Ноён хутагт Данзанравжаа гудамж 17/1 барилга 3-302 тоот -->
                                 </address>
                             </div>
                             <div class="my-4 my-md-4">
@@ -138,17 +136,7 @@
                                     </li>
                                     <li class="list-inline-item mr-0">
                                         <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="javascript:;">
-                                            <span class="fab fa-google btn-icon__inner"></span>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item mr-0">
-                                        <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="javascript:;">
                                             <span class="fab fa-instagram btn-icon__inner"></span>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item mr-0">
-                                        <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="javascript:;">
-                                            <span class="fab fa-github btn-icon__inner"></span>
                                         </a>
                                     </li>
                                 </ul>
@@ -180,8 +168,6 @@
                                         <li><a class="list-group-item list-group-item-action" href="javascript:;">Хувийн мэдээлэл</a></li>
                                         <li><a class="list-group-item list-group-item-action" href="javascript:;">Миний захиалга</a></li>
                                         <li><a class="list-group-item list-group-item-action" href="javascript:;">Дэлгүүрийн байршил</a></li>
-                                        <li><a class="list-group-item list-group-item-action" href="https://hurdanhuruu.mn" target="_blank">Hurdanhuruu.mn</a></li>
-                                        <li><a class="list-group-item list-group-item-action" href="http://toptoner.mn" target="_blank">Toptoner.mn</a></li>
                                     </ul>
                                     <!-- End List Group -->
                                 </div>
@@ -195,16 +181,10 @@
             <div class="bg-gray-14 py-2">
                 <div class="container">
                     <div class="flex-center-between d-block d-md-flex">
-                        <div class="mb-3 mb-md-0">© <a href="#" class="font-weight-bold text-gray-90">ITLAB</a> - Бүх эрх хуулиар хамгаалагдсан</div>
+                        <div class="mb-3 mb-md-0">© <a href="#" class="font-weight-bold text-gray-90">tumentechno.mn</a> - Бүх эрх хуулиар хамгаалагдсан</div>
                         <div class="text-md-right">
                             <span class="d-inline-block bg-white border rounded p-1">
                                 <img class="max-width-5" src="@/assets/images/payment/qpay.png">
-                            </span>
-                            <span class="d-inline-block bg-white border rounded p-1">
-                                <img class="max-width-5" src="@/assets/images/payment/mongolchat.png">
-                            </span>
-                            <span class="d-inline-block bg-white border rounded p-1">
-                                <img class="max-width-5" src="@/assets/images/payment/socialpay.png">
                             </span>
                         </div>
                     </div>

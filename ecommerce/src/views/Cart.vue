@@ -95,7 +95,8 @@
                                             </td>
 
                                             <td data-title="Тоо ширхэг" class="d-none-price">
-                                                <el-input-number v-model="item.qty" :min="1" @change="changeQty(item.id)" :max="calcMaxQty(item.id)" size="small"></el-input-number>
+                                                <!-- calcMaxQty(item.id) -->
+                                                <el-input-number v-model="item.qty" :min="1" @change="changeQty(item.id)" size="small"></el-input-number>
                                             </td>
 
                                             <td data-title="Нийт" class="d-none-price mb-5" align="right">

@@ -21,8 +21,8 @@ import "./vendor/hs-megamenu/src/hs.megamenu.js";
 
 import "./assets/css/theme.css";
 
-var AppURL = 'http://localhost:8001';
-// var AppURL = 'https://api.itlab.mn';
+// var AppURL = 'http://localhost:8015';
+var AppURL = 'https://api.tumentechno.mn';
 Vue.config.productionTip = false;
 
 

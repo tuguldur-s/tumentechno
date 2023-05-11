@@ -66,7 +66,7 @@ const routes = [
     name: "home",
     component: home,
     meta: {
-      title: 'ITLAB ОНЛАЙН ДЭЛГҮҮР'
+      title: 'TUMENTECHNO.MN'
     }
   },
   {
@@ -74,7 +74,7 @@ const routes = [
     name: "main-home",
     component: home,
     meta: {
-      title: 'ITLAB ОНЛАЙН ДЭЛГҮҮР'
+      title: 'TUMENTECHNO.MN'
     }
   },
   {

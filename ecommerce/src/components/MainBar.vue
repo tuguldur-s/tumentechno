@@ -12,13 +12,13 @@
                     <div class="container">
                         <div class="d-flex align-items-center">
                             <div class="topbar-left">
-                                <a href="#" class="text-gray-110 font-size-13 hover-on-dark">ITLAB ДЭЛГҮҮРТ ТАВТАЙ МОРИЛНО УУ</a>
+                                <a href="#" class="text-gray-110 font-size-13 hover-on-dark">TUMENTECHNO.MN</a>
                             </div>
                             <div class="topbar-right ml-auto">
                                 <ul class="list-inline mb-0">
-                                    <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
+                                    <!-- <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                         <router-link to="/contact" class="u-header-topbar__nav-link"><i class="ec ec-map-pointer mr-1"></i> Дэлгүүрийн байршил</router-link>
-                                    </li>
+                                    </li> -->
                                     <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                         <router-link to="/track-order" class="u-header-topbar__nav-link"><i class="ec ec-transport mr-1"></i> Захиалга хянах</router-link>
                                     </li>
@@ -154,7 +154,7 @@
                                     <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
                                         <ul class="navbar-nav u-header__navbar-nav">
                                             <li class="nav-item u-header__nav-item">
-                                                <router-link class="nav-link u-header__nav-link" to="/top-20" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Best seller</router-link>
+                                                <router-link class="nav-link u-header__nav-link" to="/top-20" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Өндөр борлуулалттай</router-link>
                                             </li>
 
                                             <!-- Featured Brands -->
@@ -178,7 +178,7 @@
                                             </li> -->
                                             <li class="nav-item u-header__nav-item mr-1" v-for="(items, index) in hashtags" :key="index+'tag'">
                                                 <router-link :to="'/event/'+items.id" class="nav-link u-header__nav-link" href="javascript:;" aria-haspopup="true" aria-expanded="false"
-                                                :style="{'border': '1px solid grey', 'padding': '0', 'padding-left': '10px', 'padding-right': '10px', 'border-radius': '3px', 'background': '#e3fd38', 'text-transform': 'uppercase', 'position': 'relative'}">
+                                                :style="{'border': '1px solid grey', 'padding': '0', 'padding-left': '10px', 'padding-right': '10px', 'border-radius': '3px', 'background': '#4c5362', 'text-transform': 'uppercase', 'position': 'relative'}">
                                                     <span>#{{items.event_name}}</span>
                                                 </router-link>
                                             </li>
@@ -200,10 +200,10 @@
                                     <i class="ec ec-support font-size-50 text-primary"></i>
                                     <div class="ml-2">
                                         <div class="phone">
-                                            <strong>Тусламж</strong> <a href="tel:800856800604" class="text-gray-90">(+976) 7511 7733</a>
+                                            <strong>Тусламж</strong> <a href="tel:800856800604" class="text-gray-90">(+976) 8630 6010</a>
                                         </div>
                                         <div class="email">
-                                            Имэйл: <a href="mailto:info@electro.com?subject=Help Need" class="text-gray-90">support@itlab.mn</a>
+                                            Имэйл: <a href="mailto:info@electro.com?subject=Help Need" class="text-gray-90">tumentechnollc@gmail.com</a>
                                         </div>
                                     </div>
                                 </div>
@@ -281,9 +281,9 @@
                                                     data-toggle="collapse"
                                                     data-target="#basicsCollapseOne"
                                                     aria-expanded="true"
-                                                    aria-controls="basicsCollapseOne" style="background: #e3fd38;">
-                                                    <span class="pl-1 text-gray-90">Ангилал</span>
-                                                    <span class="text-gray-90 ml-3">
+                                                    aria-controls="basicsCollapseOne" style="background: #4c5362;">
+                                                    <span style="color: #fff;" class="pl-1 text-gray-90">Ангилал</span>
+                                                    <span style="color: #fff;" class="text-gray-90 ml-3">
                                                         <span class="ec ec-arrow-down-search"></span>
                                                     </span>
                                                 </button>
@@ -384,20 +384,20 @@
                                     <ul class="d-flex list-unstyled mb-0">
                                         <li class="col">
                                             <el-tooltip class="item" effect="dark" content="Харьцуулах" placement="top">
-                                                <router-link to="/compare" class="text-gray-90"><i class="font-size-22 ec ec-compare"></i></router-link>
+                                                <router-link style="color: #fff;" to="/compare" class="text-gray-90"><i class="font-size-22 ec ec-compare"></i></router-link>
                                             </el-tooltip>
                                             </li>
                                         <li class="col">
                                             <el-tooltip class="item" effect="dark" content="Хадгалсан" placement="top">
-                                                <router-link :to="'/profile?role=saved'" class="text-gray-90"><i class="font-size-22 ec ec-favorites"></i></router-link>
+                                                <router-link style="color: #fff;" :to="'/profile?role=saved'" class="text-gray-90"><i class="font-size-22 ec ec-favorites"></i></router-link>
                                             </el-tooltip>
                                         </li>
                                         <li class="col pr-0">
                                             <el-tooltip class="item" effect="dark" content="Сагс" placement="top">
-                                            <router-link to="/cart" class="text-gray-90 position-relative d-flex ">
+                                            <router-link to="/cart" class="text-gray-90 position-relative d-flex " style="color: #fff;">
                                                 <i class="font-size-22 ec ec-shopping-bag"></i>
                                                 <span class="width-22 height-22 bg-dark position-absolute flex-content-center text-white rounded-circle left-12 top-8 font-weight-bold font-size-12">{{cart.total}}</span>
-                                                <span class="font-weight-bold font-size-16 text-gray-90 ml-3">₮{{cart.amount}}</span>
+                                                <!-- <span class="font-weight-bold font-size-16 text-gray-90 ml-3" style="color: #fff;">₮{{cart.amount}}</span> -->
                                             </router-link>
                                             </el-tooltip>
                                         </li>
@@ -628,23 +628,23 @@ export default {
 
                     cart.forEach(element => {
                         if(element.id == value[1].id) {
-                            if(value[1].remain >= (element.qty + value[0])) {
-                                element.qty = element.qty + value[0];
-                                // var p = {id: value[1].id, name: value[1].name, price: value[1].sale_price, image: value[1].image, model: value[1].model, qty: (element.qty + value[0]), color: value[1].color_name, discount: value[1].discount, bonus: value[1].bonus};
-                                // localStorage.cart = JSON.stringify(products);
-                                this.$notify({
-                                    title: 'Амжилттай',
-                                    dangerouslyUseHTMLString: true,
-                                    message: `<strong>${element.model}</strong> бүтээгдэхүүн нэмэгдлээ`,
-                                    type: 'success'
-                                });
-                            } else {
-                                this.$notify({
-                                    title: 'Амжилтгүй',
-                                    message: `Үлдэгдэл хүрэлцэхгүй байна`,
-                                    type: 'error'
-                                });
-                            }
+                            // if(value[1].remain >= (element.qty + value[0])) {
+                                
+                            // } else {
+                            //     this.$notify({
+                            //         title: 'Амжилтгүй',
+                            //         message: `Үлдэгдэл хүрэлцэхгүй байна`,
+                            //         type: 'error'
+                            //     });
+                            // }
+
+                            element.qty = element.qty + value[0];
+                            this.$notify({
+                                title: 'Амжилттай',
+                                dangerouslyUseHTMLString: true,
+                                message: `<strong>${element.model}</strong> бүтээгдэхүүн нэмэгдлээ`,
+                                type: 'success'
+                            });
                         }
                         products.push(element);
                     });
@@ -653,26 +653,15 @@ export default {
                     cart.forEach(element => {
                         products.push(element);
                     });
-                    if(value[1].remain >= value[0]) {
-                        var p = {id: value[1].id, name: value[1].name, price: value[1].sale_price, image: value[1].image, model: value[1].model, qty: value[0], color: value[1].color_name, discount: value[1].discount, bonus: value[1].bonus_percent};
-                        products.push(p);
-                        localStorage.cart = JSON.stringify(products);
-                        this.$notify({
-                            title: 'Амжилттай',
-                            dangerouslyUseHTMLString: true,
-                            message: `<strong>${value[1].model}</strong> бүтээгдэхүүн нэмэгдлээ`,
-                            type: 'success'
-                        });
-                    } else {
-                        this.$notify({
-                            title: 'Амжилтгүй',
-                            message: `Үлдэгдэл хүрэлцэхгүй байна`,
-                            type: 'error'
-                        });
-                    }
-                }
-            } else {
-                if(value[1].remain >= value[0]) {
+                    // if(value[1].remain >= value[0]) {
+                        
+                    // } else {
+                    //     this.$notify({
+                    //         title: 'Амжилтгүй',
+                    //         message: `Үлдэгдэл хүрэлцэхгүй байна`,
+                    //         type: 'error'
+                    //     });
+                    // }
                     var p = {id: value[1].id, name: value[1].name, price: value[1].sale_price, image: value[1].image, model: value[1].model, qty: value[0], color: value[1].color_name, discount: value[1].discount, bonus: value[1].bonus_percent};
                     products.push(p);
                     localStorage.cart = JSON.stringify(products);
@@ -682,15 +671,27 @@ export default {
                         message: `<strong>${value[1].model}</strong> бүтээгдэхүүн нэмэгдлээ`,
                         type: 'success'
                     });
-                } else {
-                    this.$notify({
-                        title: 'Амжилтгүй',
-                        message: `Үлдэгдэл хүрэлцэхгүй байна`,
-                        type: 'error'
-                    });
                 }
+            } else {
+                // if(value[1].remain >= value[0]) {
+                    
+                // } else {
+                //     this.$notify({
+                //         title: 'Амжилтгүй',
+                //         message: `Үлдэгдэл хүрэлцэхгүй байна`,
+                //         type: 'error'
+                //     });
+                // }
+                var p = {id: value[1].id, name: value[1].name, price: value[1].sale_price, image: value[1].image, model: value[1].model, qty: value[0], color: value[1].color_name, discount: value[1].discount, bonus: value[1].bonus_percent};
+                products.push(p);
+                localStorage.cart = JSON.stringify(products);
+                this.$notify({
+                    title: 'Амжилттай',
+                    dangerouslyUseHTMLString: true,
+                    message: `<strong>${value[1].model}</strong> бүтээгдэхүүн нэмэгдлээ`,
+                    type: 'success'
+                });
             }
-
             this.calcCart();
         },
         updateTimer() {

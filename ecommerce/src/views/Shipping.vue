@@ -1,4 +1,7 @@
 <style scoped>
+.btn-outline-primary:hover {
+    color: #fff;
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -211,7 +214,7 @@
                                 <div v-if="coupon.active == false" class="col-md-12" align="center">
                                     <el-collapse :style="{'border': 'none'}">
                                         <el-collapse-item name="1">
-                                            <template slot="title" :style="{'vertical-align': 'middle'}">
+                                            <template slot="title">
                                                 <!-- <TagIcon :style="{'width': '20px', 'height': '20px', 'margin-top': '-3px', 'margin-right': '5px'}" />  -->
                                                 <!-- <i class="fas fa-tag fa-lg" :style="{'margin-right': '5px'}"></i>  -->
                                                 <i class="fas fa-wallet fa-lg mr-3"></i> Купон код ашиглах

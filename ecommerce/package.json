@@ -46,6 +46,8 @@
     "qrcode.vue": "^1.7.0",
     "raw-loader": "0.5.1",
     "sass-loader": "^9.0.2",
+    "swiper": "^9.3.1",
+    "swiper-vue2": "^1.0.10",
     "tabulator-tables": "^4.7.2",
     "tail.select": "^0.5.15",
     "toastify-js": "^1.9.0",

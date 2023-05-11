@@ -17,13 +17,14 @@
 }
 
 .card-active {
-    border: 1px solid #e3fd38;
-    background:#e3fd38;
+    border: 1px solid #4c5362;
+    background:#4c5362;
+    color: #fff;
     /* background: transparent; */
 }
 
 .card-flex:hover {
-  box-shadow: 0 8px 16px 0 #e3fd38;
+  box-shadow: 0 8px 16px 0 #4c5362;
 }
 
 .card:hover {
@@ -148,7 +149,7 @@
                                 <div v-if="coupon.active == false" class="col-md-12" align="center">
                                     <el-collapse :style="{'border': 'none'}">
                                         <el-collapse-item name="1">
-                                            <template slot="title" :style="{'vertical-align': 'middle'}">
+                                            <template slot="title">
                                                 <!-- <TagIcon :style="{'width': '20px', 'height': '20px', 'margin-top': '-3px', 'margin-right': '5px'}" /> Купон код ашиглах -->
                                                 <i class="fas fa-wallet fa-lg mr-3"></i> Купон код ашиглах
                                             </template>
@@ -326,6 +327,7 @@ export default {
                     type: 'error'
                 });
             } else {
+ 
                 this.fullscreenLoading = true;
                 const token = localStorage.getItem('token');
                 var rts = this;

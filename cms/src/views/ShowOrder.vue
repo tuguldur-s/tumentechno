@@ -219,11 +219,11 @@
                     <td align="right" style="font-size: 40px;">5026451776</td>
                 </tr> -->
                 <!-- <tr style="margin-top: -15px; border-style: hidden;">
-                    <td align="center" style="font-size: 60px;" colspan="2">www.itlab.mn | <strong>7511-7733</strong></td>
+                    <td align="center" style="font-size: 60px;" colspan="2">www.itlab.mn | <strong>8630-6010</strong></td>
                 </tr> -->
             </table>
             <div style="font-size: 60px; position: fixed; bottom: 0; left: 12%;">
-                www.itlab.mn | <strong>7511-7733</strong>
+                www.tumentechno.mn | <strong>8630-6010</strong>
             </div>
         </div>
         <modal :show.sync="modals.changeState">

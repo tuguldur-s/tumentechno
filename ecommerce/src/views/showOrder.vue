@@ -17,13 +17,13 @@
 }
 
 .card-active {
-    border: 1px solid #e3fd38;
-    background:#e3fd38;
+    border: 1px solid #4c5362;
+    background:#4c5362;
     /* background: transparent; */
 }
 
 .card-flex:hover {
-  box-shadow: 0 8px 16px 0 #e3fd38;
+  box-shadow: 0 8px 16px 0 #4c5362;
 }
 
 .card:hover {
@@ -243,13 +243,11 @@
     </div>
 </template>
 <script>
-import QrcodeVue from 'qrcode.vue';
 import Brands from "@/components/brands";
 let checker = null;
 export default {
     components: {
-        Brands,
-        QrcodeVue
+        Brands
     },
     data() {
         return {
@@ -302,7 +300,20 @@ export default {
             });
         },
         showQr() {
-            this.dialogTableVisible = true;
+            // this.dialogTableVisible = true;
+            var payment = new Unipay ()
+            payment.createWidget ({
+                publicKey : "adye0j6o7mmz6d" ,
+                // sum : this.order.info.total_amount ,
+                sum: 100,
+                desc : "тестийн өгөгдөл" ,
+                trace : this.order.info.ordernumber ,
+                signature : "" ,
+            });
+            payment . success ( function ( params ) {
+                console . log ( 'Success' ) ;
+                console . log ( params ) ;
+            });
         },
         getInfo() {
             const token = localStorage.getItem('token');
@@ -323,14 +334,15 @@ export default {
                     // console.log(data.data);
                     rts.product = data.data.product;
                     rts.order.info = data.data.order[0],
-                    console.log(data.data.order[0]);
                     rts.coupon = data.data.coupon;
                     rts.load = true;
-                    if(rts.order.info.status == 'pending') {
-                        rts.dialogTableVisible = true;
-                        checker = setInterval(rts.orderChecker, 5000);
-                    }
-                    
+                    // if(rts.order.info.status == 'pending') {
+                    //     rts.dialogTableVisible = true;
+                    //     checker = setInterval(rts.orderChecker, 5000);
+                    // }
+
+                    console.log(data, '====');
+                    rts.showQr();
                 }
             }).catch(err => {
                 rts.$router.push('/error-page');

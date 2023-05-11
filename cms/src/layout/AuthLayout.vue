@@ -51,8 +51,8 @@
                 <div class="row align-items-center justify-content-xl-between">
                     <div class="col-xl-6">
                         <div class="copyright text-center text-xl-left text-muted">
-                            <a href="https://www.itlab.mn" class="font-weight-bold ml-1"
-                                               target="_blank">ITLAB.mn</a>
+                            <a href="https://www.tumentechno.mn" class="font-weight-bold ml-1"
+                                               target="_blank">tumentechno.mn</a>
                         </div>
                     </div>
                     <div class="col-xl-6">

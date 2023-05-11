@@ -248,110 +248,26 @@ exports.submitOrder = async (req, res) => {
         }
         if(info.length > 0) {
             if (payment == 'qpay') {
-                let ch = `SELECT token, expire from tokens WHERE organization = 'qpay'`;
-                db.query(ch, async (err, qt) => {
-                    if(err) {
-                        throw err;
-                    }
-                    if(qt.length > 0) {
-                        var expire = new Date(qt[0].expire);
-                        if(new Date() > expire) {
-                            token = await getToken();
-                        } else {
-                            token = qt[0].token;
-                        }
-                        if(coupon.amount > 0) {
-                            let cp = `UPDATE coupon SET status = 0 WHERE promo_code = '${coupon.code}'`;
-                            let s = `SELECT id from coupon WHERE promo_code = '${coupon.code}'`;
-                            db.query(cp, async err => {
-                                if(err) {
-                                    throw err;
-                                }
-                                db.query(s, async (err, rs) => {
-                                    if(err) {
-                                        throw err;
-                                    }
-                                    let up;
-                                    let bill = await createQPAYBill(info[0] ,amount, token);
-                                    if(rs.length > 0) {
-                                        up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, coupon = '${rs[0].id}', payment = '${payment}', payment_id = '${bill.payment_id}', QRCode = '${bill.qPay_QRcode}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
-                                    } else {
-                                        up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, payment = '${payment}', payment_id = '${bill.payment_id}', QRCode = '${bill.qPay_QRcode}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
-                                    }
-                                    // let up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, coupon = '${coupon.code}', payment = '${payment}', payment_id = '${bill.payment_id}', QRCode = '${bill.qPay_QRcode}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
-                                    db.query(up, async err => {
-                                        if(err) {
-                                            throw err;
-                                        }
-                                            db.query(`UPDATE users SET bonus = (bonus - ${parseInt(cart.useBonus)}) WHERE id = ${payload.id}`, async err => {
-                                                if(err) {
-                                                    throw err;
-                                                }
-                                                var insert = 'INSERT INTO order_product (product_id, quantity, amount, ordernumber) VALUES ?'; var rows = [];
-                                                cart.product.forEach(el => {
-                                                    var pst = [el.id, el.qty, el.price, info[0].ordernumber];
-                                                    rows.push(pst);
-                                                });
-                                                
-                                                db.query(insert, [rows] , async err => {
-                                                    if(err) {
-                                                        throw err;
-                                                    }
-                                                    res.json({
-                                                        result: 'success',
-                                                        invoiceId: info[0].ordernumber,
-                                                        bill
-                                                    });
-                                                })
-                                            });
-                                    });
-                                });
-                            })                                  
-                        } else {
-                            let bill = await createQPAYBill(info[0] ,amount, token);
-                                    let up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, payment = '${payment}', payment_id = '${bill.payment_id}', QRCode = '${bill.qPay_QRcode}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
-                                    db.query(up, async err => {
-                                        if(err) {
-                                            throw err;
-                                        }
-                                            db.query(`UPDATE users SET bonus = (bonus - ${parseInt(cart.useBonus)}) WHERE id = ${payload.id}`, async err => {
-                                                if(err) {
-                                                    throw err;
-                                                }
-                                                var insert = 'INSERT INTO order_product (product_id, quantity, amount, ordernumber) VALUES ?'; var rows = [];
-                                                cart.product.forEach(el => {
-                                                    var pst = [el.id, el.qty, el.price, info[0].ordernumber];
-                                                    rows.push(pst);
-                                                });
-                                                
-                                                db.query(insert, [rows] , async err => {
-                                                    if(err) {
-                                                        throw err;
-                                                    }
-                                                    res.json({
-                                                        result: 'success',
-                                                        invoiceId: info[0].ordernumber,
-                                                        bill
-                                                    });
-                                                })
-                                            });
-                                    });
-                        }
-                    }
-                });
-            } else if (payment == 'mongolchat') {
-                let productList = [];
-                // console.log(cart.product);
-                cart.product.forEach(el => {
-                    let am = 0;
-                    if(el.discount > 0) {
-                        am = el.price - (el.price / 100 * el.discount);
-                    } else {
-                        am = el.price;
-                    }
-                    productList.push({product_name: el.name, quantity: el.qty, price: am, tag: ""});
-                });
-                
+                // let ch = `SELECT token, expire from tokens WHERE organization = 'qpay'`;
+                // db.query(ch, async (err, qt) => {
+                //     if(err) {
+                //         throw err;
+                //     }
+
+                //     if(qt.length > 0) {
+                //         var expire = new Date(qt[0].expire);
+                //         if(new Date() > expire) {
+                //             token = await getToken();
+                //         } else {
+                //             token = qt[0].token;
+                //         }
+
+                        
+                //     } else {
+                //         throw 'no payment value';
+                //     }
+                // });
+
                 if(coupon.amount > 0) {
                     let cp = `UPDATE coupon SET status = 0 WHERE promo_code = '${coupon.code}'`;
                     let s = `SELECT id from coupon WHERE promo_code = '${coupon.code}'`;
@@ -364,11 +280,11 @@ exports.submitOrder = async (req, res) => {
                                 throw err;
                             }
                             let up;
-                            let bill = await createMongolChatQr(productList, amount, info[0]);
+                            // let bill = await createQPAYBill(info[0] ,amount, token);
                             if(rs.length > 0) {
-                                up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, coupon = '${rs[0].id}', payment = '${payment}', payment_id = '${info[0].ordernumber}', QRCode = '${bill.qr}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
+                                up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, coupon = '${rs[0].id}', payment = '${payment}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
                             } else {
-                                up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, payment = '${payment}', payment_id = '${info[0].ordernumber}', QRCode = '${bill.qr}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
+                                up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, payment = '${payment}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
                             }
                             // let up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, coupon = '${coupon.code}', payment = '${payment}', payment_id = '${bill.payment_id}', QRCode = '${bill.qPay_QRcode}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
                             db.query(up, async err => {
@@ -379,61 +295,53 @@ exports.submitOrder = async (req, res) => {
                                         if(err) {
                                             throw err;
                                         }
-                                        var insert = '';
-                                        cart.product.forEach(element => {
-                                            if(insert == '') {
-                                                insert += `('','${element.id}',${element.qty},${element.price},'${info[0].ordernumber}')`;
-                                            } else {
-                                                insert += `, ('','${element.id}',${element.qty},${element.price},'${info[0].ordernumber}')`;
-                                            }
+                                        var insert = 'INSERT INTO order_product (product_id, quantity, amount, ordernumber) VALUES ?'; var rows = [];
+                                        cart.product.forEach(el => {
+                                            var pst = [el.id, el.qty, el.price, info[0].ordernumber];
+                                            rows.push(pst);
                                         });
-                                        insert = `INSERT INTO order_product VALUES ` + insert;
-                                        db.query(insert , async err => {
+                                        
+                                        db.query(insert, [rows] , async err => {
                                             if(err) {
                                                 throw err;
                                             }
                                             res.json({
                                                 result: 'success',
-                                                invoiceId: info[0].ordernumber,
-                                                bill
+                                                invoiceId: info[0].ordernumber
                                             });
                                         })
                                     });
                             });
                         });
-                    })     
+                    })                                  
                 } else {
-                    let bill = await createMongolChatQr(productList, amount, info[0]);
-                    let up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, payment = '${payment}', payment_id = '${info[0].ordernumber}', QRCode = '${bill.qr}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
-                                    db.query(up, async err => {
-                                        if(err) {
-                                            throw err;
-                                        }
-                                            db.query(`UPDATE users SET bonus = (bonus - ${parseInt(cart.useBonus)}) WHERE id = ${payload.id}`, async err => {
-                                                if(err) {
-                                                    throw err;
-                                                }
-                                                var insert = '';
-                                                cart.product.forEach(element => {
-                                                    if(insert == '') {
-                                                        insert += `('','${element.id}',${element.qty},${element.price},'${info[0].ordernumber}')`;
-                                                    } else {
-                                                        insert += `, ('','${element.id}',${element.qty},${element.price},'${info[0].ordernumber}')`;
-                                                    }
-                                                });
-                                                insert = `INSERT INTO order_product VALUES ` + insert;
-                                                db.query(insert , async err => {
-                                                    if(err) {
-                                                        throw err;
-                                                    }
-                                                    res.json({
-                                                        result: 'success',
-                                                        invoiceId: info[0].ordernumber,
-                                                        bill
-                                                    });
-                                                })
-                                            });
+                    // let bill = await createQPAYBill(info[0] ,amount, token);
+                    let up = `UPDATE orders SET total_amount = ${amount}, bonus = ${parseInt(info[0].bonus)}, discount = ${parseInt(cart.sale)}, add_bonus = ${parseInt(cart.bonus)}, used_bonus = ${parseInt(cart.useBonus)}, payment = '${payment}', enable_is = 1 WHERE ordernumber = '${info[0].ordernumber}'`;
+                    db.query(up, async err => {
+                        if(err) {
+                            throw err;
+                        }
+                            db.query(`UPDATE users SET bonus = (bonus - ${parseInt(cart.useBonus)}) WHERE id = ${payload.id}`, async err => {
+                                if(err) {
+                                    throw err;
+                                }
+                                var insert = 'INSERT INTO order_product (product_id, quantity, amount, ordernumber) VALUES ?'; var rows = [];
+                                cart.product.forEach(el => {
+                                    var pst = [el.id, el.qty, el.price, info[0].ordernumber];
+                                    rows.push(pst);
+                                });
+                                
+                                db.query(insert, [rows] , async err => {
+                                    if(err) {
+                                        throw err;
+                                    }
+                                    res.json({
+                                        result: 'success',
+                                        invoiceId: info[0].ordernumber
                                     });
+                                })
+                            });
+                    });
                 }
             } else {
                 res.json({

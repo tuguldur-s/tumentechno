@@ -5,13 +5,13 @@
                     <div class="container">
                         <div class="d-flex align-items-center">
                             <div class="topbar-left">
-                                <a href="#" class="text-gray-110 font-size-13 hover-on-dark">ITLAB ДЭЛГҮҮРТ ТАВТАЙ МОРИЛНО УУ</a>
+                                <a href="#" class="text-gray-110 font-size-13 hover-on-dark">TUMENTECHNO.MN</a>
                             </div>
                             <div class="topbar-right ml-auto">
                                 <ul class="list-inline mb-0">
-                                    <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
+                                    <!-- <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                         <router-link to="/contact" class="u-header-topbar__nav-link"><i class="ec ec-map-pointer mr-1"></i> Дэлгүүрийн байршил</router-link>
-                                    </li>
+                                    </li> -->
                                     <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                         <router-link to="/track-order" class="u-header-topbar__nav-link"><i class="ec ec-transport mr-1"></i> Захиалга хянах</router-link>
                                     </li>

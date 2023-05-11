@@ -1,4 +1,4 @@
-<style scoped>
+<style lang="scss" scoped>
 
 .backtop {
   opacity: 1;
@@ -12,6 +12,77 @@
   .mobilepadding {
       margin-left: 20px;
   }
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+.w-100 {
+  width: 100%;
+}
+.ml-auto, .mx-auto {
+  margin-left: auto;
+}
+.mr-auto, .mx-auto {
+  margin-right: auto;
+}
+
+.catogory-grp {
+    position: relative;
+    
+    .category-more {
+        position: absolute;
+        right: 0;
+        top: 10px;
+        a {
+            color: #4c5362;
+        }
+    }
+}
+
+
+.swiper-container {
+    overflow: hidden;
+    position: relative;
+
+    .swiper-button-prev {
+        background: #d9d9d9 !important;
+        width: 50px !important;
+        height: 50px !important;
+        border-radius: 50% !important;
+    }
+
+    .swiper-slide {
+        border: 1px solid #d4d4d4;
+        border-radius: 5px;
+        padding: 10px;
+
+        &:hover {
+            border-color: #4c5362;
+        }
+
+        .product-container {
+            display:  flex;
+            flex-direction: column;
+
+            .product-name {
+                font-size: 0.8vw;
+                line-height: 1.125rem;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .product-actions {
+                width: 100%;
+                .prodcut-add-cart {
+                    float: right;
+                }
+            }
+        }
+    }
 }
 
 
@@ -127,7 +198,7 @@
                                     <div class="input-group">
                                         <input type="text" v-model="search" class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary" name="main-search" id="searchproduct-item" placeholder="Бүтээгдэхүүн хайх" aria-label="Бүтээгдэхүүн хайх" aria-describedby="searchProduct1" required>
                                         <div class="input-group-append">
-                                            <button class="btn  height-40 py-2 px-3" type="submit" id="searchProduct1" style="background-color: #393d3e;border-color: #393d3e;color: #fff;">
+                                            <button class="btn  height-40 py-2 px-3" type="submit" id="searchProduct1" style="background-color: #4c5362;;border-color: #4c5362;;color: #fff;">
                                                 <span class="ec ec-search font-size-24"></span>
                                             </button>
                                         </div>
@@ -189,7 +260,7 @@
                                             <el-tooltip class="item" effect="dark" content="Сагс" placement="top">
                                             <router-link to="/cart" class="text-gray-90 position-relative d-flex">
                                                 <i class="font-size-22 ec ec-shopping-bag"></i>
-                                                <span class="bg-lg-down-black width-22 height-22 bg-primary position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12">{{cart.total}}</span>
+                                                <span class="bg-lg-down-black width-22 height-22 bg-primary position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12" style="color: #fff;">{{cart.total}}</span>
                                                 <span class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">₮{{cart.amount}}</span>
                                             </router-link>
                                             </el-tooltip>
@@ -211,7 +282,7 @@
                                                             data-unfold-animation-in="slideInUp"
                                                             data-unfold-animation-out="fadeOut">
                                                             <i class="font-size-22 ec ec-shopping-bag"></i>
-                                                            <span class="bg-lg-down-black width-22 height-22 bg-primary position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12" :style="{'border': '1px solid grey'}">{{cart.total}}</span>
+                                                            <span class="bg-lg-down-black width-22 height-22 bg-primary position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12" :style="{'border': '1px solid grey', 'color': '#fff'}">{{cart.total}}</span>
                                                             <span class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">₮{{cart.amount}}</span>
                                                         </div>
                                                     </span>
@@ -268,7 +339,7 @@
                                     <!-- Card -->
                                     <div class="card border-0">
                                         <div class="card-header card-collapse border-0" id="basicsHeadingOne">
-                                            <button type="button" class="btn-link btn-block d-flex card-btn py-3 text-lh-1 px-4 shadow-none btn-primary rounded-top-lg border-0 font-weight-bold text-gray-90 transition-3d-hover" style="background-color: #393d3e;border-color: #393d3e;color: #fff;"
+                                            <button type="button" class="btn-link btn-block d-flex card-btn py-3 text-lh-1 px-4 shadow-none btn-primary rounded-top-lg border-0 font-weight-bold text-gray-90 transition-3d-hover" style="background-color: #4c5362;;border-color: #4c5362;;color: #fff;"
                                                 data-toggle="collapse"
                                                 data-target="#basicsCollapseOne"
                                                 aria-expanded="true"
@@ -361,7 +432,7 @@
                                 <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
                                     <ul class="navbar-nav u-header__navbar-nav">
                                         <li class="nav-item u-header__nav-item">
-                                            <router-link class="nav-link u-header__nav-link" to="/top-20" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Best seller</router-link>
+                                            <router-link class="nav-link u-header__nav-link" to="/top-20" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Өндөр борлуулалттай</router-link>
                                         </li>
 
                                         <!-- Featured Brands -->
@@ -378,20 +449,6 @@
                                         <li class="nav-item u-header__nav-item" :style="{'position': 'relative'}">
                                             <router-link class="nav-link u-header__nav-link" to="/brands" aria-haspopup="true" aria-expanded="false" aria-labelledby="blogSubMenu">Брэндүүд</router-link>
                                         </li>
-
-                                        <!-- <li class="nav-item u-header__nav-item mr-1" v-for="(items, index) in hashtags" :key="index+'tag'">
-                                            <router-link :to="'/event/'+items.id" class="nav-link u-header__nav-link" href="javascript:;" aria-haspopup="true" aria-expanded="false"
-                                            :style="{'border': '1px solid grey', 'padding': '0', 'padding-left': '10px', 'padding-right': '10px', 'border-radius': '3px', 'background': '#e3fd38', 'text-transform': 'uppercase', 'position': 'relative'}">
-                                                <span>#{{items.event_name}}</span>
-                                            </router-link>
-                                        </li> -->
-                                        
-                                        <li class="nav-item u-header__nav-last-item">
-                                            <a class="text-gray-90" href="javascript:;" @click="goBonus">
-                                                <strong>{{checkBonus()}}</strong>
-                                            </a>
-                                        </li>
-                                        <!-- End Button -->
                                     </ul>
                                 </div>
                                 <!-- End Navigation -->
@@ -449,25 +506,6 @@
             <div class="container">
                 <div class="mb-5">
                     <div class="row">
-                        <!-- <carousel :perPage="1" :loop="true" :perPageCustom="[[1200, 4]]" :scrollPerPage="true" :autoplay="true" :autoplayTimeout="5000" :autoplayHoverPause="true" :paginationEnabled="false" class="col-md-12">
-                        <slide class="col-md-12 mb-4 mb-xl-0 col-xl-3" v-for="(item, index) in events" :key="index+'2'">
-                            <a href="javascript:;" class="d-black text-gray-90">
-                                <div class="min-height-132 py-1 d-flex bg-gray-1 align-items-center" :style="{'padding': '20px', 'border-radius': '10px'}">
-                                    <div class="col-3 col-xl-3 col-wd-3 pr-0">
-                                        <img class="img-fluid" :src="require('@/assets/images/product/hp.png')" :alt="item.event_name" :style="{'width': '60px', 'height': 'auto'}">
-                                    </div>
-                                    <div class="col-8 col-xl-8 col-wd-8">
-                                        <div class="font-size-18 font-weight-light text-ls-n1 text-lh-23">
-                                            <span :style="{'text-transform': 'uppercase', 'font-size': '30px'}"><strong>#{{item.event_name}}</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-1 col-xl-1 col-wd-1" align="center">
-                                        <router-link :to="'/event/'+item.id"><span :style="{'margin-right': '10px', 'color': '#c5c7c9'}"><i class="fas fa-chevron-circle-right fa-3x"></i></span></router-link>
-                                    </div>
-                                </div>
-                            </a>
-                        </slide>
-                        </carousel> -->
                         <div v-for="(item, index) in categories.quick" :key="index" class="col-md-6 mb-4 mb-xl-0 col-xl-3">
                             <router-link :to="'/sub-category/'+item.id" class="d-black text-gray-90">
                                 <div class="min-height-132 py-1 d-flex bg-gray-1 align-items-center" :style="{'border-radius': '10px'}">
@@ -706,9 +744,47 @@
             </div>
             
             <div class="products-group-4-1-4 space-1 bg-gray-7">
-                <h2 class="sr-only">Products Grid</h2>
                 <div class="container">
-                    <div class="position-relative text-center z-index-2 mb-3">
+                    <div class="mb-6 mt-5 catogory-grp" v-for="(item, index) in random.category" :key="index+'c'">
+                        <h3 class="mb-3 pb-2 font-size-22" style="font-weight: 700;">{{item.category_name}}</h3>
+                        <div class="category-more">
+                            <!-- el-icon-arrow-right -->
+                            <router-link :to="'/category/' + item.id" class="">Дэлгэрэнгүй <i class="el-icon-arrow-right"></i></router-link>
+                        </div>
+                        <swiper
+                            :slides-per-view="6"
+                            :space-between="10"
+                            :loop="true"
+                            ref="swiper">
+                            <swiper-slide v-for="(item, index) in recently" :key="index" class="test">
+                                <div class="product-container">
+                                    <h5 class="mb-1 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
+
+                                    <div class="mb-2">
+                                        <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
+                                    </div>
+
+                                    <div class="flex-center-between mb-1">
+                                        <div class="flex-center-between mb-1 product-actions">
+                                            <div v-if="item.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
+                                                <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(item.sale_price * ((100 - item.discount) / 100)).toLocaleString()}}</ins>
+                                                <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(item.sale_price).toLocaleString()}}</del>
+                                            </div>
+                                            <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
+                                                <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(item.sale_price).toLocaleString()}}</ins>
+                                                <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(item.sale_price / 100 * item.bonus_percent).toLocaleString()}}₮</ins>
+                                            </div>
+                                            <div class="d-none d-xl-block prodcut-add-cart">
+                                                <a href="javascript:;" @click="addCart([1, item])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </swiper-slide>
+                        </swiper>
+                    </div>
+
+                    <!-- <div class="position-relative text-center z-index-2 mb-3">
                         <ul class="nav nav-classic nav-tab nav-tab-sm px-md-3 justify-content-start justify-content-lg-center flex-nowrap flex-lg-wrap overflow-auto overflow-lg-visble border-md-down-bottom-0 pb-1 pb-lg-0 mb-n1 mb-lg-0" id="pills-tab-1" role="tablist">
                             <li v-for="(item, index) in random.category" :key="index+'c'" class="nav-item flex-shrink-0 flex-lg-shrink-1">
                                 <a class="nav-link" v-bind:class="{'active': index == 0}" :id="'Tpills-one-'+index+'-tab'" data-toggle="pill" :href="'#Tpills-one-'+index" role="tab" :aria-controls="'#Tpills-one-'+index" aria-selected="true">
@@ -718,11 +794,10 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
 
                     <!-- Tab Content -->
-                    <div class="tab-content" id="Tpills-tabContent">
-                        <!-- v-for="(item, index) in random.category" :key="index"  -->
+                    <!-- <div class="tab-content" id="Tpills-tabContent">
                         <div v-for="(item, index) in random.category" :key="index+'a'" class="tab-pane fade pt-2 show" v-bind:class="{'active': index == 0}" :id="'Tpills-one-'+index" role="tabpanel" :aria-labelledby="'Tpills-one-'+index+'-tab'">
                             <div class="row no-gutters">
                                 <div class="col-md-6 col-lg-7 col-wd-8 d-md-flex d-wd-block">
@@ -926,158 +1001,47 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- End Tab Content -->
+                    </div> -->
                 </div>
 
             </div>
             
             <div class="container">
-                <!-- Prodcut-cards-carousel -->
-                <div class="space-top-2">
-                    <div class="row">
-                        <div class="col-lg-10 mb-5">
-                            <el-carousel :interval="5000" arrow="never" height="335px">
-                                <el-carousel-item v-for="(item,index) in banners" :key="index+'1'">
-                                    <div class="bg-gray-17">
-                                        <router-link :to="'/sub-category/'+item.subId" class="row">
-                                            <div class="col-md-7">
-                                                <img class="img-fluid" :src="$appUrl+'/images/banner/'+item.image" alt="Image Description">
-                                            </div>
-                                            <div class="col-md-5 pt-3">
-                                                <div class="ml-md-2 text-gray-90 mobilepadding">
-                                                    <h2 class="font-size-24 font-size-20-lg max-width-270 text-lh-1dot2 font-weight-semi-bold">{{item.title}}</h2>
-                                                    <p class="font-size-16 font-size-12-lg text-gray-90 font-weight-light hiddenMobile" :style="{'text-align': 'justify', 'padding-right': '20px'}">
-                                                        {{item.description}}
-                                                    </p>
-                                                    <div class="text-lh-28 hiddenMobile" style="margin-top: -20px;">
-                                                        <!-- <span class="font-size-24 font-weight-semi-bold mt-0"><sup class=""></sup>299,800₮</span> -->
-                                                        <a href="javascript:;" class="btn btn-primary transition-3d-hover rounded-lg font-weight-normal py-2 px-md-7 px-3"
-                                                            data-scs-animation-in="fadeInUp"
-                                                            :style="{'font-size': '10px'}"
-                                                            data-scs-animation-delay="400">
-                                                            Бүтээгдэхүүн
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </router-link>
-                                    </div>
-                                </el-carousel-item>
-                            </el-carousel>
-                        </div>
-                        <div class="col-lg-2 mb-5 hiddenMobile">
-                            <div>
-                                <a href="https://www.hurdanhuruu.mn" target="_blank" class="d-block"><img class="img-fluid" :src="require('@/assets/images/banner/hh.jpg')" alt="hurdanhuruu.mn" :style="{'border-radius': '10px'}"></a>
-                            </div>
-                            <div style="margin-top: 9px;">
-                                <a href="http://www.toptoner.mn" target="_blank" class="d-block"><img class="img-fluid" :src="require('@/assets/images/banner/ttoner.jpg')" alt="toptoner.mn" :style="{'border-radius': '10px'}"></a>
-                            </div>
-                            <!-- <div style="margin-top: 9px;">
-                                <a href="../shop/shop.html" class="d-block"><img class="img-fluid" :src="require('@/assets/images/product/sample.webp')" alt="Image Description"></a>
-                            </div> -->
-                        </div>
-                    </div>            
-                </div>
-                <div class="mb-6">
-                    <a href="http://toptoner.mn" class="d-block text-gray-90" target="_blank">
-                        <div class="">
-                            <div class="space-top-2-md p-4 pt-6 pt-md-8 pt-lg-6 pt-xl-8 pb-lg-4 px-xl-8 px-lg-6">
-                                <div class="flex-horizontal-center mt-lg-3 mt-xl-0 overflow-auto overflow-md-visble">
-                                    <!--<h1 class="text-lh-38 font-size-32 font-weight-light mb-0 flex-shrink-0 flex-md-shrink-1">SHOP AND <strong>SAVE BIG</strong> ON TOPTONER.MN</h1>-->
-                                    <h1 class="text-lh-38 font-size-32 font-weight-light mb-0 flex-shrink-0 flex-md-shrink-1">Принтерийн хорыг <strong>TOPTONER.MN</strong> - ээс</h1>
-                                    <div class="ml-5 flex-content-center flex-shrink-0">
-                                        <div class="rounded-lg px-6 py-2" style="background: #00afef; color: #fff;" align="center">
-                                            <em class="font-size-18 font-weight-light"><strong>TOPTONER</strong></em>
-                                            <div class="font-size-16 text-lh-1" align="right">
-                                                <sup class="">ТОД ХЭВЛЭНЭ</sup>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- End Full banner -->
-                <!-- Recently viewed -->
+                <div class="mb-6 mt-5">
+                    <h3 class="mb-3 pb-2 font-size-22">Сүүлд үзсэн</h3>
+                    <swiper
+                        :slides-per-view="6"
+                        :space-between="10"
+                        :loop="true"
+                        ref="swiper"
+                        @swiper="onSwiper"
+                        @slideChange="onSlideChange">
+                        <swiper-slide v-for="(item, index) in recently" :key="index" class="test">
+                            <div class="product-container">
+                                <h5 class="mb-1 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
 
-                <div class="mb-6">
-                    <div class="position-relative">
-                        <div class="border-bottom border-color-1 mb-2">
-                            <h3 class="section-title mb-0 pb-2 font-size-22">Сүүлд үзсэн</h3>
-                        </div>
-                        <div class="js-slick-carousel u-slick position-static overflow-hidden u-slick-overflow-visble pb-7 pt-2 px-1"
-                            data-pagi-classes="text-center right-0 bottom-1 left-0 u-slick__pagination u-slick__pagination--long mb-0 z-index-n1 mt-3 mt-md-0"
-                            data-slides-show="7"
-                            data-slides-scroll="1"
-                            data-arrows-classes="position-absolute top-0 font-size-17 u-slick__arrow-normal top-10"
-                            data-arrow-left-classes="fa fa-angle-left right-1"
-                            data-arrow-right-classes="fa fa-angle-right right-0"
-                            data-responsive='[{
-                              "breakpoint": 1400,
-                              "settings": {
-                                "slidesToShow": 6
-                              }
-                            }, {
-                                "breakpoint": 1200,
-                                "settings": {
-                                  "slidesToShow": 4
-                                }
-                            }, {
-                              "breakpoint": 992,
-                              "settings": {
-                                "slidesToShow": 3
-                              }
-                            }, {
-                              "breakpoint": 768,
-                              "settings": {
-                                "slidesToShow": 2
-                              }
-                            }, {
-                              "breakpoint": 554,
-                              "settings": {
-                                "slidesToShow": 2
-                              }
-                            }]'>
-                            <div v-for="(item, index) in recently" :key="index" class="js-slide products-group">
-                                <div class="product-item">
-                                    <div class="product-item__outer h-100">
-                                        <div class="product-item__inner px-wd-4 p-2 p-md-3">
-                                            <div class="product-item__body pb-xl-2">
-                                                <div class="mb-2"><router-link :to="'/category/'+item.type" class="font-size-12 text-gray-5">{{item.category_name}}</router-link></div>
-                                                <h5 class="mb-1 product-item__title"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
-                                                <div class="mb-2">
-                                                    <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
-                                                </div>
-                                                <div class="flex-center-between mb-1">
-                                                    <div class="flex-center-between mb-1">
-                                                        <div v-if="item.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                            <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(item.sale_price * ((100 - item.discount) / 100)).toLocaleString()}}</ins>
-                                                            <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(item.sale_price).toLocaleString()}}</del>
-                                                        </div>
-                                                        <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                            <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(item.sale_price).toLocaleString()}}</ins>
-                                                            <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(item.sale_price / 100 * item.bonus_percent).toLocaleString()}}₮</ins>
-                                                        </div>
-                                                        <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="javascript:;" @click="addCart([1, item])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-item__footer">
-                                                <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                    <a href="javascript:;" @click="addCompare(item.id)" class="text-gray-6 font-size-13"><i class="ec ec-compare font-size-15"></i> Харьцуулах</a>
-                                                    <a href="javascript:;" @click="addFavourite(item.id)" class="text-gray-6 font-size-13"><i class="ec ec-favorites font-size-15"></i> Хадгалах</a>
-                                                </div>
-                                            </div>
+                                <div class="mb-2">
+                                    <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
+                                </div>
+
+                                <div class="flex-center-between mb-1">
+                                    <div class="flex-center-between mb-1 product-actions">
+                                        <div v-if="item.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
+                                            <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(item.sale_price * ((100 - item.discount) / 100)).toLocaleString()}}</ins>
+                                            <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(item.sale_price).toLocaleString()}}</del>
+                                        </div>
+                                        <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
+                                            <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(item.sale_price).toLocaleString()}}</ins>
+                                            <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(item.sale_price / 100 * item.bonus_percent).toLocaleString()}}₮</ins>
+                                        </div>
+                                        <div class="d-none d-xl-block prodcut-add-cart">
+                                            <a href="javascript:;" @click="addCart([1, item])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </swiper-slide>
+                    </swiper>
                 </div>
             </div>
         </main>
@@ -1088,6 +1052,14 @@
 import TopBar from "@/components/topbar";
 import Brands from "@/components/brands";
 import { Carousel, Slide } from 'vue-carousel';
+
+import { Navigation, Pagination } from 'swiper'
+
+import { SwiperCore, Swiper, SwiperSlide } from 'swiper-vue2'
+
+// Import Swiper styles
+import 'swiper/swiper-bundle.css';
+SwiperCore.use([Navigation, Pagination])
 let countdown = null;
 let timer = null;
 export default {
@@ -1095,7 +1067,9 @@ export default {
         TopBar,
         Brands,
         Carousel, 
-        Slide
+        Slide,
+        Swiper,
+        SwiperSlide
     },
     created() {
         var r = JSON.parse(localStorage.getItem('recently'));
@@ -1169,6 +1143,18 @@ export default {
         next();
     },
     methods: {
+        getImageUrl (imageId) {
+            return `https://picsum.photos/600/400/?image=${imageId}`
+        },
+        onSwiper (swiper) {
+            console.log(swiper);
+            setTimeout(() => {
+                swiper.slideNext();
+            }, 5000);
+        },
+        onSlideChange () {
+            console.log('slide change')
+        },
         toSubCategory(id) {
             alert(id);
         },
@@ -1276,28 +1262,31 @@ export default {
         addCart(value) {
             var products = [];
             let cart = JSON.parse(localStorage.getItem('cart'));
-            if(cart != null) {
+            if(cart != null && cart.length > 0) {
                 let ex = cart.some(function(field) {
                     return field.id == value[1].id
                 });
                 if(ex) {
+
                     cart.forEach(element => {
                         if(element.id == value[1].id) {
-                            if(value[1].remain >= (element.qty + value[0])) {
-                                element.qty = element.qty + value[0];
-                                this.$notify({
-                                    title: 'Амжилттай',
-                                    dangerouslyUseHTMLString: true,
-                                    message: `<strong>${element.model}</strong> бүтээгдэхүүн нэмэгдлээ`,
-                                    type: 'success'
-                                });
-                            } else {
-                                this.$notify({
-                                    title: 'Амжилтгүй',
-                                    message: `Үлдэгдэл хүрэлцэхгүй байна`,
-                                    type: 'error'
-                                });
-                            }
+                            // if(value[1].remain >= (element.qty + value[0])) {
+                                
+                            // } else {
+                            //     this.$notify({
+                            //         title: 'Амжилтгүй',
+                            //         message: `Үлдэгдэл хүрэлцэхгүй байна`,
+                            //         type: 'error'
+                            //     });
+                            // }
+
+                            element.qty = element.qty + value[0];
+                            this.$notify({
+                                title: 'Амжилттай',
+                                dangerouslyUseHTMLString: true,
+                                message: `<strong>${element.model}</strong> бүтээгдэхүүн нэмэгдлээ`,
+                                type: 'success'
+                            });
                         }
                         products.push(element);
                     });
@@ -1306,26 +1295,15 @@ export default {
                     cart.forEach(element => {
                         products.push(element);
                     });
-                    if(value[1].remain >= value[0]) {
-                        var p = {id: value[1].id, name: value[1].name, price: value[1].sale_price, image: value[1].image, model: value[1].model, qty: value[0], color: value[1].color_name, discount: value[1].discount, bonus: value[1].bonus_percent};
-                        products.push(p);
-                        localStorage.cart = JSON.stringify(products);
-                        this.$notify({
-                            title: 'Амжилттай',
-                            dangerouslyUseHTMLString: true,
-                            message: `<strong>${value[1].model}</strong> бүтээгдэхүүн нэмэгдлээ`,
-                            type: 'success'
-                        });
-                    } else {
-                        this.$notify({
-                            title: 'Амжилтгүй',
-                            message: `Үлдэгдэл хүрэлцэхгүй байна`,
-                            type: 'error'
-                        });
-                    }
-                }
-            } else {
-                if(value[1].remain >= value[0]) {
+                    // if(value[1].remain >= value[0]) {
+                        
+                    // } else {
+                    //     this.$notify({
+                    //         title: 'Амжилтгүй',
+                    //         message: `Үлдэгдэл хүрэлцэхгүй байна`,
+                    //         type: 'error'
+                    //     });
+                    // }
                     var p = {id: value[1].id, name: value[1].name, price: value[1].sale_price, image: value[1].image, model: value[1].model, qty: value[0], color: value[1].color_name, discount: value[1].discount, bonus: value[1].bonus_percent};
                     products.push(p);
                     localStorage.cart = JSON.stringify(products);
@@ -1335,13 +1313,26 @@ export default {
                         message: `<strong>${value[1].model}</strong> бүтээгдэхүүн нэмэгдлээ`,
                         type: 'success'
                     });
-                } else {
-                    this.$notify({
-                        title: 'Амжилтгүй',
-                        message: `Үлдэгдэл хүрэлцэхгүй байна`,
-                        type: 'error'
-                    });
                 }
+            } else {
+                // if(value[1].remain >= value[0]) {
+                    
+                // } else {
+                //     this.$notify({
+                //         title: 'Амжилтгүй',
+                //         message: `Үлдэгдэл хүрэлцэхгүй байна`,
+                //         type: 'error'
+                //     });
+                // }
+                var p = {id: value[1].id, name: value[1].name, price: value[1].sale_price, image: value[1].image, model: value[1].model, qty: value[0], color: value[1].color_name, discount: value[1].discount, bonus: value[1].bonus_percent};
+                products.push(p);
+                localStorage.cart = JSON.stringify(products);
+                this.$notify({
+                    title: 'Амжилттай',
+                    dangerouslyUseHTMLString: true,
+                    message: `<strong>${value[1].model}</strong> бүтээгдэхүүн нэмэгдлээ`,
+                    type: 'success'
+                });
             }
             this.calcCart();
         },
@@ -1459,7 +1450,7 @@ export default {
                 url: rts.$appUrl + '/api/home/home-page',
                 headers: {}
             }).then(function(data) {
-                // console.log(data.data.discountProduct);
+                console.log('====', data.data.quickCategory);
                 rts.homeBanner.list = data.data.homeBanner;  
                 rts.categories.sub = data.data.subCategory;  
                 rts.categories.main = data.data.category;  
