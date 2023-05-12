@@ -167,7 +167,7 @@
                                     <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
                                         <li><a class="list-group-item list-group-item-action" href="javascript:;">Хувийн мэдээлэл</a></li>
                                         <li><a class="list-group-item list-group-item-action" href="javascript:;">Миний захиалга</a></li>
-                                        <li><a class="list-group-item list-group-item-action" href="javascript:;">Дэлгүүрийн байршил</a></li>
+                                        <!-- <li><a class="list-group-item list-group-item-action" href="javascript:;">Дэлгүүрийн байршил</a></li> -->
                                     </ul>
                                     <!-- End List Group -->
                                 </div>

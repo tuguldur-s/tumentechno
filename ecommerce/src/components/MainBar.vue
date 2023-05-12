@@ -1,8 +1,31 @@
-<style scoped>
+<style lang="scss" scoped>
 .backtop {
   opacity: 1;
   transform: rotate(180deg);
   color: #393d3e;
+}
+
+.u-hamburger__inner {
+    background: #fff;
+    &::before, &::after {
+        background: #fff;
+    }
+}
+
+.ec.ec-search {
+    &::before {
+        color: #fff;
+    }
+}
+
+.resp-logo {
+    content: url('../assets/images/logo/itlab.png');
+}
+
+@media (max-width: 1200px) {
+    .resp-logo {
+        content: url('../assets/images/logo/itlabwhite.png');
+    }
 }
 </style>
 <template>
@@ -59,7 +82,7 @@
                                     <!-- Logo -->
                                     <router-link class="order-1 order-xl-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-center" to="/home" aria-label="Electro">
                                         <div style="width: 120px; position: relative;">
-                                            <img src="@/assets/images/logo/itlab.png" style="width: 100%; height: auto;">
+                                            <img class="resp-logo" style="width: 100%; height: auto;">
                                         </div>
                                     </router-link>
 
@@ -75,8 +98,8 @@
                                         data-unfold-animation-in="fadeInLeft"
                                         data-unfold-animation-out="fadeOutLeft"
                                         data-unfold-duration="500">
-                                        <span id="hamburgerTriggerMenu" class="u-hamburger__box">
-                                            <span class="u-hamburger__inner"></span>
+                                        <span id="hamburgerTriggerMenu" class="u-hamburger__box" >
+                                            <span class="u-hamburger__inner" ></span>
                                         </span>
                                     </button>
                                     <!-- End Fullscreen Toggle Button -->
@@ -224,7 +247,7 @@
                                                 <el-dropdown-menu slot="dropdown" style="width: 100%;">
                                                     <div class="left-0 mx-2" aria-labelledby="searchClassicInvoker">
                                                         <form class="js-focus-state input-group px-3" @submit.prevent="addSearch">
-                                                            <input class="form-control" v-model="search" type="search" placeholder="Бүтээгдэхүүн хайх3">
+                                                            <input class="form-control" v-model="search" type="search" placeholder="Бүтээгдэхүүн хайх">
                                                             <div class="input-group-append">
                                                                 <button class="btn btn-primary px-3" type="submit"><i class="font-size-18 ec ec-search"></i></button>
                                                             </div>
@@ -235,7 +258,7 @@
                                             </el-tooltip>
                                         </li>
                                         <!-- End Search -->
-                                        <li class="col d-none d-xl-block">
+                                        <li class="col d-none d-xl-block" style="co">
                                             <el-tooltip class="item" effect="dark" content="Харьцуулах" placement="top">
                                                 <router-link to="/compare" class="text-gray-90"><i class="font-size-22 ec ec-compare"></i></router-link>
                                             </el-tooltip>
@@ -247,12 +270,12 @@
                                         </li>
                                         <li class="col d-xl-none px-2 px-sm-3">
                                             <el-tooltip class="item" effect="dark" content="Хувийн мэдээлэл" placement="top">
-                                                <router-link to="/profile" class="text-gray-90"><i class="font-size-22 ec ec-user"></i></router-link>
+                                                <router-link style="color: #fff;" to="/profile" class="text-gray-90"><i class="font-size-22 ec ec-user"></i></router-link>
                                             </el-tooltip>
                                         </li>
                                         <li class="col pr-xl-0 px-2 px-sm-3">
                                             <el-tooltip class="item" effect="dark" content="Сагс" placement="top">
-                                            <router-link to="/cart" class="text-gray-90 position-relative d-flex ">
+                                            <router-link to="/cart" class="text-gray-90 position-relative d-flex " style="color: #fff;">
                                                 <i class="font-size-22 ec ec-shopping-bag"></i>
                                                 <span class="width-22 height-22 bg-dark position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12 text-white">{{cart.total}}</span>
                                                 <span class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">₮{{cart.amount}}</span>

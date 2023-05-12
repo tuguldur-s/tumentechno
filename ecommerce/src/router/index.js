@@ -184,7 +184,7 @@ const routes = [
         component: showOrder,
         beforeEnter: AuthCheck,
         meta: {
-          title: 'Захиалгын дэлгэрэнгүй - ITLAB',
+          title: 'Захиалгын дэлгэрэнгүй',
         }
       },
       {
@@ -193,7 +193,7 @@ const routes = [
         component: ConfirmOrder,
         beforeEnter: AuthCheck,
         meta: {
-          title: 'Захиалга баталгаажуулах - ITLAB',
+          title: 'Захиалга баталгаажуулах',
         }
       },
       {
@@ -202,7 +202,7 @@ const routes = [
         component: Shipping,
         beforeEnter: AuthCheck,
         meta: {
-          title: 'Захиалгын хаяг - ITLAB',
+          title: 'Захиалгын хаяг',
         }
       },
       {
@@ -218,7 +218,7 @@ const routes = [
         name: "cart",
         component: Cart,
         meta: {
-          title: 'Сагс - ITLAB',
+          title: 'Сагс',
         }
       },
       {

@@ -241,9 +241,16 @@ export default {
         getProduct() {
             var id = [];
             let cart = JSON.parse(localStorage.getItem('cart'));
+            if (!cart) {
+                this.valuetext = 'Таны сагс хоосон байна';
+                return;
+            }
+
             if(cart.length <= 0) {
                 this.valuetext = 'Таны сагс хоосон байна';
+                return;
             }
+            
             cart.forEach(element => {
                 id.push(element.id);
             });

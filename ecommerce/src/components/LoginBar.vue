@@ -1,8 +1,31 @@
-<style scoped>
+<style lang="scss" scoped>
 .backtop {
   opacity: 1;
   transform: rotate(180deg);
   color: #393d3e;
+}
+
+.u-hamburger__inner {
+    background: #fff;
+    &::before, &::after {
+        background: #fff;
+    }
+}
+
+.ec.ec-search {
+    &::before {
+        color: #fff;
+    }
+}
+
+.resp-logo {
+    content: url('../assets/images/logo/itlab.png');
+}
+
+@media (max-width: 1200px) {
+    .resp-logo {
+        content: url('../assets/images/logo/itlabwhite.png');
+    }
 }
 </style>
 <template>
@@ -59,7 +82,7 @@
                                     <!-- Logo -->
                                     <router-link class="order-1 order-xl-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-center" to="/home" aria-label="Electro">
                                         <div style="width: 120px; position: relative;">
-                                            <img src="@/assets/images/logo/itlab.png" style="width: 100%; height: auto;">
+                                            <img class="resp-logo" style="width: 100%; height: auto;">
                                         </div>
                                     </router-link>
 
@@ -232,12 +255,12 @@
                                         </li>
                                         <li class="col d-xl-none px-2 px-sm-3">
                                             <el-tooltip class="item" effect="dark" content="Хувийн мэдээлэл" placement="top">
-                                                <router-link to="/profile" class="text-gray-90"><i class="font-size-22 ec ec-user"></i></router-link>
+                                                <router-link style="color: #fff;" to="/profile" class="text-gray-90"><i class="font-size-22 ec ec-user"></i></router-link>
                                             </el-tooltip>
                                         </li>
                                         <li class="col pr-xl-0 px-2 px-sm-3">
                                             <el-tooltip class="item" effect="dark" content="Сагс" placement="top">
-                                            <router-link to="/cart" class="text-gray-90 position-relative d-flex ">
+                                            <router-link style="color: #fff;" to="/cart" class="text-gray-90 position-relative d-flex ">
                                                 <i class="font-size-22 ec ec-shopping-bag"></i>
                                                 <span class="width-22 height-22 bg-dark position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12 text-white">{{cart.total}}</span>
                                                 <span class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">₮{{cart.amount}}</span>
@@ -267,8 +290,8 @@
                                                     data-target="#basicsCollapseOne"
                                                     aria-expanded="true"
                                                     aria-controls="basicsCollapseOne" style="background: #4c5362;">
-                                                    <span class="pl-1 text-gray-90">Ангилал</span>
-                                                    <span class="text-gray-90 ml-3">
+                                                    <span style="color: #fff;" class="pl-1 text-gray-90">Ангилал</span>
+                                                    <span class="text-gray-90 ml-3" style="color: #fff;">
                                                         <span class="ec ec-arrow-down-search"></span>
                                                     </span>
                                                 </button>
@@ -359,20 +382,20 @@
                                     <ul class="d-flex list-unstyled mb-0">
                                         <li class="col">
                                             <el-tooltip class="item" effect="dark" content="Харьцуулах" placement="top">
-                                                <router-link to="/compare" class="text-gray-90"><i class="font-size-22 ec ec-compare"></i></router-link>
+                                                <router-link style="color: #fff;"  to="/compare" class="text-gray-90"><i class="font-size-22 ec ec-compare"></i></router-link>
                                             </el-tooltip>
                                             </li>
                                         <li class="col">
                                             <el-tooltip class="item" effect="dark" content="Хадгалсан" placement="top">
-                                                <router-link :to="'/profile?role=saved'" class="text-gray-90"><i class="font-size-22 ec ec-favorites"></i></router-link>
+                                                <router-link style="color: #fff;"  :to="'/profile?role=saved'" class="text-gray-90"><i class="font-size-22 ec ec-favorites"></i></router-link>
                                             </el-tooltip>
                                         </li>
                                         <li class="col pr-0">
                                             <el-tooltip class="item" effect="dark" content="Сагс" placement="top">
-                                            <router-link to="/cart" class="text-gray-90 position-relative d-flex ">
+                                            <router-link style="color: #fff;"  to="/cart" class="text-gray-90 position-relative d-flex ">
                                                 <i class="font-size-22 ec ec-shopping-bag"></i>
                                                 <span class="width-22 height-22 bg-dark position-absolute flex-content-center text-white rounded-circle left-12 top-8 font-weight-bold font-size-12">{{cart.total}}</span>
-                                                <span class="font-weight-bold font-size-16 text-gray-90 ml-3">₮{{cart.amount}}</span>
+                                                <span style="color: #fff;" class="font-weight-bold font-size-16 text-gray-90 ml-3">₮{{cart.amount}}</span>
                                             </router-link>
                                             </el-tooltip>
                                         </li>

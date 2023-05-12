@@ -286,6 +286,7 @@ export default {
                     invoiceId: this.order.invoiceId,
                 }
             }).then(data => {
+                // console.log(data, '======');
                 if(data.data.result == 'success') {
                     rts.order.info.status = 'paid';
                     clearInterval(checker);
@@ -336,10 +337,10 @@ export default {
                     rts.order.info = data.data.order[0],
                     rts.coupon = data.data.coupon;
                     rts.load = true;
-                    // if(rts.order.info.status == 'pending') {
-                    //     rts.dialogTableVisible = true;
-                    //     checker = setInterval(rts.orderChecker, 5000);
-                    // }
+                    if(rts.order.info.status == 'pending') {
+                        // rts.dialogTableVisible = true;
+                        checker = setInterval(rts.orderChecker, 5000);
+                    }
 
                     console.log(data, '====');
                     rts.showQr();

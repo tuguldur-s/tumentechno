@@ -1,4 +1,41 @@
+
+<style>
+.el-radio-button__orig-radio:checked+.el-radio-button__inner {
+    border-color: #4c5362 !important;
+    background-color: #4c5362 !important;
+    box-shadow: -1px 0 0 0 #4c5362;
+}
+
+.el-radio-button__inner:hover {
+    color: black !important;
+}
+
+.el-radio-button__orig-radio:checked+.el-radio-button__inner:hover {
+    color: #fff !important;
+}
+
+.tab-active {
+    display: block;
+}
+</style>
 <style lang="scss" scoped>
+
+.u-hamburger__inner {
+    background: #fff;
+    &::before, &::after {
+        background: #fff;
+    }
+}
+
+.ec.ec-search {
+    &::before {
+        color: #fff;
+    }
+}
+
+.resp-logo {
+    content: url('../assets/images/logo/itlab.png');
+}
 
 .backtop {
   opacity: 1;
@@ -69,7 +106,7 @@
             .product-name {
                 font-size: 0.8vw;
                 line-height: 1.125rem;
-                width: 100%;
+                width: 90%;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -85,7 +122,44 @@
     }
 }
 
+.navigator-button {
+    width: 40px;
+    height: 40px;
+    background: #4c5362;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 
+    i {
+        color: #fff;
+        font-size: 20px;
+    }
+
+    &.left {
+        top: 50%;
+        left: 0;
+        transform: translate(-50%, -50%);
+    }
+    &.right {
+        top: 50%;
+        right: 0;
+        transform: translate(50%, -50%);
+    }
+}
+
+@media (max-width: 1200px) {
+    .resp-logo {
+        content: url('../assets/images/logo/itlabwhite.png');
+    }
+
+    .navigator-button {
+        display: none;
+    }
+}
 </style>
 <template>
     <div>
@@ -100,12 +174,11 @@
                                 <!-- Nav -->
                                 <nav class="navbar navbar-expand u-header__navbar py-0 justify-content-xl-between max-width-270 min-width-270">
                                     <!-- Logo -->
-                                    <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center mb-3" href="javascript:;" aria-label="Electro">
+                                    <router-link class="order-1 order-xl-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-center" to="/home" aria-label="Electro">
                                         <div style="width: 120px; position: relative;">
-                                            <img src="@/assets/images/logo/itlab.png" style="width: 100%; height: auto;">
+                                            <img class="resp-logo" style="width: 100%; height: auto;">
                                         </div>
-                                    </a>
-                                    <!-- End Logo -->
+                                    </router-link>
 
                                     <!-- Fullscreen Toggle Button -->
                                     <button id="sidebarHeaderInvokerMenu" type="button" class="navbar-toggler d-block btn u-hamburger mr-3 mr-xl-0"
@@ -119,8 +192,8 @@
                                         data-unfold-animation-in="fadeInLeft"
                                         data-unfold-animation-out="fadeOutLeft"
                                         data-unfold-duration="500">
-                                        <span id="hamburgerTriggerMenu" class="u-hamburger__box">
-                                            <span class="u-hamburger__inner"></span>
+                                        <span id="hamburgerTriggerMenu" class="u-hamburger__box" >
+                                            <span class="u-hamburger__inner" ></span>
                                         </span>
                                     </button>
                                     <!-- End Fullscreen Toggle Button -->
@@ -253,12 +326,12 @@
                                             <el-tooltip class="item" effect="dark" content="Хувийн мэдээлэл" placement="top">
                                                 <!-- <a href="javascript:;" class="text-gray-90">
                                                 <i class="font-size-22 ec ec-user"></i></a> -->
-                                                <router-link to="/profile" class="text-gray-90"><i class="font-size-22 ec ec-user"></i></router-link>
+                                                <router-link style="color: #fff;" to="/profile" class="text-gray-90"><i class="font-size-22 ec ec-user"></i></router-link>
                                             </el-tooltip>
                                         </li>
                                         <li class="col pr-xl-0 px-2 px-sm-3 d-xl-none">
                                             <el-tooltip class="item" effect="dark" content="Сагс" placement="top">
-                                            <router-link to="/cart" class="text-gray-90 position-relative d-flex">
+                                            <router-link to="/cart" class="text-gray-90 position-relative d-flex" style="color: #fff;">
                                                 <i class="font-size-22 ec ec-shopping-bag"></i>
                                                 <span class="bg-lg-down-black width-22 height-22 bg-primary position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12" style="color: #fff;">{{cart.total}}</span>
                                                 <span class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">₮{{cart.amount}}</span>
@@ -529,242 +602,36 @@
                     </div>
                 </div>
                 <div class="mb-5">
-                    <div class="row">
-                        <!-- Deal -->
-                        <div class="col-md-auto mb-6 mb-md-0">
-                            <div class="p-3 border border-width-2 border-primary borders-radius-20 bg-white min-width-370">
-                                <div class="d-flex justify-content-between align-items-center m-1 ml-2">
-                                    <h3 class="font-size-22 mb-5 font-weight-normal text-lh-28 max-width-120">Онцлох бүтээгдэхүүн</h3>
-                                    <div class="d-flex align-items-center flex-column justify-content-center bg-primary rounded-pill mb-5 height-75 width-75 text-lh-1">
-                                        <!-- <span class="font-size-12">Хэмнэлт</span> -->
-                                        <div class="font-size-25 text-red" v-if="special != ''"><b>-{{special.discount}}%</b></div>
-                                        <div class="font-size-25 text-red" v-else><b>0%</b></div>
-                                    </div>
-                                </div>
-                                <div class="mb-4">
-                                    <router-link v-if="special != ''" :to="'/single-product/'+special.id" class="d-block text-center">
-                                        <img v-if="special.image != null && special.image != undefined" class="img-fluid" :src="$appUrl+'/images/product/'+special.image" alt="Image Description" :style="{'max-width': '300px'}">
-                                        <img v-else class="img-fluid" src="@/assets/images/product/default.png" alt="Image Description" :style="{'max-width': '300px'}">
-                                    </router-link>
-                                </div>
-                                <h5 v-if="special != ''" class="mb-2 font-size-14 text-center mx-auto max-width-180 text-lh-18"><a href="javascript:;" class="text-blue font-weight-bold">{{special.model}}<br>{{special.name}}</a></h5>
-                                <div v-if="special != ''" class="d-flex align-items-center justify-content-center">
-                                    <del class="font-size-18 mr-2 text-gray-2">₮{{Number(special.sale_price).toLocaleString()}}</del>
-                                    <ins class="font-size-30 text-red text-decoration-none">₮{{Number(special.sale_price * ((100 - special.discount) / 100)).toLocaleString()}}</ins>
-                                </div>
-                                <div class="mb-3 mx-2" v-if="special != ''">
-                                    <div class="justify-content-between align-items-center mb-2" align="center">
-                                        <span class="">Таны хэмнэлт: <strong>₮{{Number(special.sale_price - (special.sale_price * ((100 - special.discount) / 100))).toLocaleString()}}</strong></span>
-                                    </div>
-                                </div>
-                                <div class="mb-2" v-if="special != ''">
-                                    <h6 class="font-size-15 text-gray-2 text-center mb-3">Дуусах хугацаа:</h6>
-                                    <div class="js-countdown d-flex justify-content-center" v-if="showCountdown == true">
-                                        <div class="text-lh-1">
-                                            <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
-                                                <span class="js-cd-days">{{countdown.day}}</span>
-                                            </div>
-                                            <div class="text-gray-2 font-size-12 text-center">ӨДӨР</div>
-                                        </div>
-                                        <div class="mx-1 pt-1 text-gray-2 font-size-24">:</div>
-                                        <div class="text-lh-1">
-                                            <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
-                                                <span class="js-cd-hours">{{countdown.hour}}</span>
-                                            </div> 
-                                            <div class="text-gray-2 font-size-12 text-center">ЦАГ</div>
-                                        </div>
-                                        <div class="mx-1 pt-1 text-gray-2 font-size-24">:</div>
-                                        <div class="text-lh-1">
-                                            <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
-                                                <span class="js-cd-minutes">{{countdown.min}}</span>
-                                            </div>
-                                            <div class="text-gray-2 font-size-12 text-center">МИНУТ</div>
-                                        </div>
-                                        <div class="mx-1 pt-1 text-gray-2 font-size-24">:</div>
-                                        <div class="text-lh-1">
-                                            <div class="text-gray-2 font-size-30 bg-gray-4 py-2 px-2 rounded-sm mb-2">
-                                                <span class="js-cd-seconds">{{countdown.sec}}</span>
-                                            </div>
-                                            <div class="text-gray-2 font-size-12 text-center">СЕКУНД</div>
-                                        </div>
-                                    </div>
-                                    <div v-else align="center">
-                                        <h5 class="text-gray-2 bg-gray-4 py-1 rounded-sm">Урамшуулал дууссан</h5>
-                                    </div>
-                                </div>
-                            </div>
+                <el-radio-group v-model="tabPosition" style="margin-bottom: 30px;" @change="changeTab">
+                    <el-radio-button label="recommended">Санал болгох</el-radio-button>
+                    <el-radio-button label="discounted">Хямдралтай</el-radio-button>
+                    <el-radio-button label="toprated">Өндөр үнэлгээтэй</el-radio-button>
+                </el-radio-group>
+
+                <div class="tab-content" id="pills-tabContent">
+                    <div role="tabpanel" style="position: relative;">
+                        <div class="navigator-button left" v-if="fillRadio.length > 5" @click="prevSwiper('tabswiper')">
+                            <i class="el-icon-arrow-left"></i>
                         </div>
-                        <!-- End Deal -->
-                        <!-- Tab Prodcut -->
-                        <div class="col">
-                            <!-- Features Section -->
-                            <div class="">
-                                <!-- Nav Classic -->
-                                <div class="position-relative bg-white text-center z-index-2">
-                                    <ul class="nav nav-classic nav-tab justify-content-center" id="pills-tab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active " id="pills-one-example1-tab" data-toggle="pill" href="#pills-one-example1" role="tab" aria-controls="pills-one-example1" aria-selected="true">
-                                                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                                    Санал болгох
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link " id="pills-two-example1-tab" data-toggle="pill" href="#pills-two-example1" role="tab" aria-controls="pills-two-example1" aria-selected="false">
-                                                <div class="d-md-flex justify-content-md-center align-items-md-center" style="color: red;">
-                                                    Хямдралтай
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link " id="pills-three-example1-tab" data-toggle="pill" href="#pills-three-example1" role="tab" aria-controls="pills-three-example1" aria-selected="false">
-                                                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                                    Өндөр үнэлгээтэй
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- End Nav Classic -->
-                                
-                                <!-- Tab Content -->
-                                <div class="tab-content" id="pills-tabContent">
-                                    <div class="tab-pane fade pt-2 show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab">
-                                        <ul class="row list-unstyled products-group no-gutters">
-                                            <li v-for="(item, index) in featured.slice(0,8)" :key="index+'f'" class="col-6 col-wd-3 col-md-4 product-item">
-                                                <div class="product-item__outer h-100">
-                                                    <div class="product-item__inner px-xl-4 p-3">
-                                                        <div class="product-item__body pb-xl-2">
-                                                            <div class="mb-1"><router-link :to="'/category/'+item.type" class="font-size-12 text-gray-5">{{item.category_name}}</router-link></div>
-                                                            <h5 class="mb-1 product-item__title"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
-                                                            <div class="mb-2">
-                                                                <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
-                                                            </div>
-                                                            <div class="flex-center-between mb-1">
-                                                                <div v-if="item.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(item.sale_price * ((100 - item.discount) / 100)).toLocaleString()}}</ins>
-                                                                    <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(item.sale_price).toLocaleString()}}</del>
-                                                                </div>
-                                                                <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(item.sale_price).toLocaleString()}}</ins>
-                                                                    <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(item.sale_price / 100 * item.bonus_percent).toLocaleString()}}₮</ins>
-                                                                </div>
-                                                                <div class="d-none d-xl-block prodcut-add-cart">
-                                                                    <a href="javascript:;" @click="addCart([1, item])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-item__footer">
-                                                            <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                                <a href="javascript:;" @click="addCompare(item.id)" class="text-gray-6 font-size-13"><i class="ec ec-compare font-size-15"></i> Харьцуулах</a>
-                                                                <a href="javascript:;" @click="addFavourite(item.id)" class="text-gray-6 font-size-13"><i class="ec ec-favorites font-size-15"></i> Хадгалах</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane fade pt-2" id="pills-two-example1" role="tabpanel" aria-labelledby="pills-two-example1-tab">
-                                        <ul class="row list-unstyled products-group no-gutters">
-                                            <li v-for="(item, index) in discount.slice(0,8)" :key="index+'s'" class="col-6 col-wd-3 col-md-4 product-item">
-                                                <div class="product-item__outer h-100">
-                                                    <div class="product-item__inner px-xl-4 p-3">
-                                                        <div class="product-item__body pb-xl-2">
-                                                            <div class="mb-2"><router-link :to="'/category/'+item.type" class="font-size-12 text-gray-5">{{item.category_name}}</router-link></div>
-                                                            <h5 class="mb-1 product-item__title"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
-                                                            <div class="mb-2">
-                                                                <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" alt="Image Description"></router-link>
-                                                            </div>
-                                                            <div class="flex-center-between mb-1">
-                                                                <div v-if="item.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(item.sale_price * ((100 - item.discount) / 100)).toLocaleString()}}</ins>
-                                                                    <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(item.sale_price).toLocaleString()}}</del>
-                                                                </div>
-                                                                <div class="d-none d-xl-block prodcut-add-cart">
-                                                                    <a href="javascript:;" @click="addCart([1, item])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-item__footer">
-                                                            <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                                <a href="javascript:;" @click="addCompare(item.id)" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Харьцуулах</a>
-                                                                <a href="javascript:;" @click="addFavourite(item.id)" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Хадгалах</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane fade pt-2" id="pills-three-example1" role="tabpanel" aria-labelledby="pills-three-example1-tab">
-                                        <ul class="row list-unstyled products-group no-gutters">
-                                            <li v-for="(item, index) in topRated" :key="index+'r'" class="col-6 col-wd-3 col-md-4 product-item">
-                                                <div class="product-item__outer h-100">
-                                                    <div class="product-item__inner px-xl-4 p-3">
-                                                        <div class="product-item__body pb-xl-2">
-                                                            <div class="mb-2"><router-link :to="'/category/'+item.type" class="font-size-12 text-gray-5">{{item.category_name}}</router-link></div>
-                                                            <h5 class="mb-1 product-item__title"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
-                                                            <div class="mb-2">
-                                                                <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" alt="Image Description"></router-link>
-                                                            </div>
-                                                            <div class="flex-center-between mb-1">
-                                                                <div v-if="item.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(item.sale_price * ((100 - item.discount) / 100)).toLocaleString()}}</ins>
-                                                                    <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(item.sale_price).toLocaleString()}}</del>
-                                                                </div>
-                                                                <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(item.sale_price).toLocaleString()}}</ins>
-                                                                    <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(item.sale_price / 100 * item.bonus_percent).toLocaleString()}}₮</ins>
-                                                                </div>
-                                                                <div class="d-none d-xl-block prodcut-add-cart">
-                                                                    <a href="javascript:;" @click="addCart([1, item])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-item__footer">
-                                                            <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                                <a href="javascript:;" @click="addCompare(item.id)" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Харьцуулах</a>
-                                                                <a href="javascript:;" @click="addFavourite(item.id)" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Хадгалах</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>   
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- End Tab Content -->
-                            </div>
-                            <!-- End Features Section -->
-                        </div>
-                        <!-- End Tab Prodcut -->
-                    </div>
-                </div>
-            </div>
-            
-            <div class="products-group-4-1-4 space-1 bg-gray-7">
-                <div class="container">
-                    <div class="mb-6 mt-5 catogory-grp" v-for="(item, index) in random.category" :key="index+'c'">
-                        <h3 class="mb-3 pb-2 font-size-22" style="font-weight: 700;">{{item.category_name}}</h3>
-                        <div class="category-more">
-                            <!-- el-icon-arrow-right -->
-                            <router-link :to="'/category/' + item.id" class="">Дэлгэрэнгүй <i class="el-icon-arrow-right"></i></router-link>
+                        <div class="navigator-button right" v-if="fillRadio.length > 5" @click="nextSwiper('tabswiper')">
+                            <i class="el-icon-arrow-right"></i>
                         </div>
                         <swiper
-                            :slides-per-view="6"
+                            
                             :space-between="10"
                             :loop="true"
-                            ref="swiper">
-                            <swiper-slide v-for="(item, index) in recently" :key="index" class="test">
+                            :breakpoints="breakpoints"
+                            v-if="featured.length > 0"
+                            ref="tabswiper">
+                            <swiper-slide v-for="(item, index) in fillRadio" :key="index" class="test">
                                 <div class="product-container">
-                                    <h5 class="mb-1 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
+                                    <h5 class="mb-3 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
 
                                     <div class="mb-2">
                                         <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
                                     </div>
 
-                                    <div class="flex-center-between mb-1">
+                                    <div class="flex-center-between mb-1 mt-5">
                                         <div class="flex-center-between mb-1 product-actions">
                                             <div v-if="item.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
                                                 <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(item.sale_price * ((100 - item.discount) / 100)).toLocaleString()}}</ins>
@@ -783,225 +650,57 @@
                             </swiper-slide>
                         </swiper>
                     </div>
-
-                    <!-- <div class="position-relative text-center z-index-2 mb-3">
-                        <ul class="nav nav-classic nav-tab nav-tab-sm px-md-3 justify-content-start justify-content-lg-center flex-nowrap flex-lg-wrap overflow-auto overflow-lg-visble border-md-down-bottom-0 pb-1 pb-lg-0 mb-n1 mb-lg-0" id="pills-tab-1" role="tablist">
-                            <li v-for="(item, index) in random.category" :key="index+'c'" class="nav-item flex-shrink-0 flex-lg-shrink-1">
-                                <a class="nav-link" v-bind:class="{'active': index == 0}" :id="'Tpills-one-'+index+'-tab'" data-toggle="pill" :href="'#Tpills-one-'+index" role="tab" :aria-controls="'#Tpills-one-'+index" aria-selected="true">
-                                    <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                        {{item.category_name}}
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div> -->
-
-                    <!-- Tab Content -->
-                    <!-- <div class="tab-content" id="Tpills-tabContent">
-                        <div v-for="(item, index) in random.category" :key="index+'a'" class="tab-pane fade pt-2 show" v-bind:class="{'active': index == 0}" :id="'Tpills-one-'+index" role="tabpanel" :aria-labelledby="'Tpills-one-'+index+'-tab'">
-                            <div class="row no-gutters">
-                                <div class="col-md-6 col-lg-7 col-wd-8 d-md-flex d-wd-block">
-                                    <ul class="row list-unstyled products-group no-gutters mb-0">
-                                        <li v-for="(product, i) in filterRandProduct(item.id).slice(0,4)" :key="i+'1'" class="col-md-6 col-lg-4 col-wd-3 product-item remove-divider">
-                                            <div class="product-item__outer h-100 w-100 prodcut-box-shadow">
-                                                <div class="product-item__inner bg-white p-3">
-                                                    <div class="product-item__body pb-xl-2">
-                                                        <div class="mb-2"><router-link :to="'/category/'+item.id" class="font-size-12 text-gray-5">{{item.category_name}}</router-link></div>
-                                                        <h5 class="mb-1 product-item__title"><router-link :to="'/single-product/'+product.id" class="text-blue font-weight-bold">{{product.model}} {{product.name}}</router-link></h5>
-                                                        <div class="mb-2">
-                                                            <router-link :to="'/single-product/'+product.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+product.image" alt="Image Description"></router-link>
-                                                        </div>
-                                                        <div class="flex-center-between mb-1">
-                                                                <div v-if="product.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(product.sale_price * ((100 - product.discount) / 100)).toLocaleString()}}</ins>
-                                                                    <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(product.sale_price).toLocaleString()}}</del>
-                                                                </div>
-                                                                <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(product.sale_price).toLocaleString()}}</ins>
-                                                                    <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(product.sale_price / 100 * product.bonus_percent).toLocaleString()}}₮</ins>
-                                                                </div>
-                                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                                <a href="javascript:;" @click="addCart([1, product])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-item__footer">
-                                                        <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                            <a href="javascript:;" @click="addCompare(product.id)" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Харьцуулах</a>
-                                                            <a href="javascript:;" @click="addFavourite(product.id)" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Хадгалах</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li v-for="(product, i) in filterRandProduct(item.id).slice(4,6)" :key="i+'2'" class="col-md-6 col-lg-4 col-wd-3 product-item d-md-none d-lg-block remove-divider">
-                                            <div class="product-item__outer h-100 w-100 prodcut-box-shadow">
-                                                <div class="product-item__inner bg-white p-3">
-                                                    <div class="product-item__body pb-xl-2">
-                                                        <div class="mb-2"><router-link :to="'/category/'+item.id" class="font-size-12 text-gray-5">{{item.category_name}}</router-link></div>
-                                                        <h5 class="mb-1 product-item__title"><router-link :to="'/single-product/'+product.id" class="text-blue font-weight-bold">{{product.model}} {{product.name}}</router-link></h5>
-                                                        <div class="mb-2">
-                                                            <router-link :to="'/single-product/'+product.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+product.image" alt="Image Description"></router-link>
-                                                        </div>
-                                                        <div class="flex-center-between mb-1">
-                                                                <div v-if="product.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(product.sale_price * ((100 - product.discount) / 100)).toLocaleString()}}</ins>
-                                                                    <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(product.sale_price).toLocaleString()}}</del>
-                                                                </div>
-                                                                <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(product.sale_price).toLocaleString()}}</ins>
-                                                                    <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(product.sale_price / 100 * product.bonus_percent).toLocaleString()}}₮</ins>
-                                                                </div>
-                                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                                <a href="javascript:;" @click="addCart([1, product])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-item__footer">
-                                                        <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                            <a href="javascript:;" @click="addCompare(product.id)" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Харьцуулах</a>
-                                                            <a href="javascript:;" @click="addFavourite(product.id)" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Хадгалах</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li v-for="(product, i) in filterRandProduct(item.id).slice(6,8)" :key="i+'3'" class="col-md-6 col-lg-4 col-wd-3 product-item d-md-none d-wd-block remove-divider">
-                                            <div class="product-item__outer h-100 w-100 prodcut-box-shadow">
-                                                <div class="product-item__inner bg-white p-3">
-                                                    <div class="product-item__body pb-xl-2">
-                                                        <div class="mb-2"><router-link :to="'/category/'+item.id" class="font-size-12 text-gray-5">{{item.category_name}}</router-link></div>
-                                                        <h5 class="mb-1 product-item__title"><router-link :to="'/single-product/'+product.id" class="text-blue font-weight-bold">{{product.model}} {{product.name}}</router-link></h5>
-                                                        <div class="mb-2">
-                                                            <router-link :to="'/single-product/'+product.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+product.image" alt="Image Description"></router-link>
-                                                        </div>
-                                                        <div class="flex-center-between mb-1">
-                                                                <div v-if="product.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(product.sale_price * ((100 - product.discount) / 100)).toLocaleString()}}</ins>
-                                                                    <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(product.sale_price).toLocaleString()}}</del>
-                                                                </div>
-                                                                <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                    <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(product.sale_price).toLocaleString()}}</ins>
-                                                                    <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(product.sale_price / 100 * product.bonus_percent).toLocaleString()}}₮</ins>
-                                                                </div>
-                                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                                <a href="javascript:;" @click="addCart([1, product])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-item__footer">
-                                                        <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                            <a href="javascript:;" @click="addCompare(product.id)" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Харьцуулах</a>
-                                                            <a href="javascript:;" @click="addFavourite(product.id)" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Хадгалах</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 col-lg-5 col-wd-4 products-group-1">
-                                    <ul class="row list-unstyled products-group no-gutters bg-white h-100 mb-0">
-                                        <li class="col product-item remove-divider" v-for="(product, i) in filterRandProduct(item.id).slice(8,9)" :key="i+'4'">
-                                            <div class="product-item__outer h-100 w-100 prodcut-box-shadow">
-                                                <div class="product-item__inner bg-white p-3">
-                                                    <div class="product-item__body d-flex flex-column">
-                                                        <div class="mb-1">
-                                                            <div class="mb-2"><router-link :to="'/category/'+item.id" class="font-size-12 text-gray-5">{{item.category_name}}</router-link></div>
-                                                            <h5 class="mb-0 product-item__title"><router-link :to="'single-product/'+product.id" class="text-blue font-weight-bold">{{product.model}} {{product.name}}</router-link></h5>
-                                                        </div>
-                                                        <div class="mb-1 min-height-4-1-4">
-                                                            <router-link :to="'/single-product/'+product.id" class="d-block text-center my-4 mt-lg-6 mb-lg-5 mt-xl-0 mb-xl-0 mt-wd-6 mb-wd-5"><img class="img-fluid" :src="$appUrl+'/images/product/'+product.big_image1" :alt="product.name" :style="{'width': '400px','max-width': '100%', 'height': 'auto'}"></router-link>
-                                                            
-                                                            <div class="row mx-gutters-2 mb-3">
-                                                                <div class="col-auto">
-                                                                    
-                                                                    <a class="js-fancybox max-width-60 u-media-viewer" href="javascript:;"
-                                                                        :data-src="$appUrl+'/images/product/'+product.big_image2"
-                                                                        data-fancybox="fancyboxGallery6"
-                                                                        :data-caption="product.name + ' зураг 1'"
-                                                                        data-speed="700"
-                                                                        data-is-infinite="true">
-                                                                        <img class="img-fluid border" :src="$appUrl+'/images/product/'+product.big_image2" alt="Image Description">
-
-                                                                        <span class="u-media-viewer__container">
-                                                                            <span class="u-media-viewer__icon">
-                                                                                <span class="fas fa-plus u-media-viewer__icon-inner"></span>
-                                                                            </span>
-                                                                        </span>
-                                                                    </a>
-                                                                    
-                                                                </div>
-
-                                                                <div class="col-auto">
-                                                                    
-                                                                    <a class="js-fancybox max-width-60 u-media-viewer" href="javascript:;"
-                                                                        :data-src="$appUrl+'/images/product/'+product.big_image2"
-                                                                        data-fancybox="fancyboxGallery6"
-                                                                        :data-caption="product.name + ' зураг 2'"
-                                                                        data-speed="700"
-                                                                        data-is-infinite="true">
-                                                                        <img class="img-fluid border" :src="$appUrl+'/images/product/'+product.big_image2" alt="Image Description">
-
-                                                                        <span class="u-media-viewer__container">
-                                                                            <span class="u-media-viewer__icon">
-                                                                                <span class="fas fa-plus u-media-viewer__icon-inner"></span>
-                                                                            </span>
-                                                                        </span>
-                                                                    </a>
-                                                                    
-                                                                </div>
-
-                                                                <div class="col-auto">
-                                                                    
-                                                                    <a class="js-fancybox max-width-60 u-media-viewer" href="javascript:;"
-                                                                        :data-src="$appUrl+'/images/product/'+product.big_image3"
-                                                                        data-fancybox="fancyboxGallery6"
-                                                                        :data-caption="product.name + ' зураг 3'"
-                                                                        data-speed="700"
-                                                                        data-is-infinite="true">
-                                                                        <img class="img-fluid border" :src="$appUrl+'/images/product/'+product.big_image3" alt="Image Description">
-
-                                                                        <span class="u-media-viewer__container">
-                                                                            <span class="u-media-viewer__icon">
-                                                                                <span class="fas fa-plus u-media-viewer__icon-inner"></span>
-                                                                            </span>
-                                                                        </span>
-                                                                    </a>
-                                                                    
-                                                                </div>
-                                                                <div class="col"></div>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        <div class="flex-center-between">
-                                                            <div v-if="product.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(product.sale_price * ((100 - product.discount) / 100)).toLocaleString()}}</ins>
-                                                                <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(product.sale_price).toLocaleString()}}</del>
-                                                            </div>
-                                                            <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                                <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(product.sale_price).toLocaleString()}}</ins>
-                                                                <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(product.sale_price / 100 * product.bonus_percent).toLocaleString()}}₮</ins>
-                                                            </div>
-                                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                                <a href="javascript:;" @click="addCart([1, product])" class="btn-add-cart btn-add-cart__wide btn-primary transition-3d-hover"><i class="ec ec-add-to-cart mr-2"></i> Сагсанд нэмэх</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-item__footer">
-                                                        <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                            <a href="javascript:;" @click="addCompare(product.id)" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Харьцуулах</a>
-                                                            <a href="javascript:;" @click="addFavourite(product.id)" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Хадгалах</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="products-group-4-1-4 space-1">
+                <div class="container">
+                    <div class="mb-6 mt-5 catogory-grp" v-for="(item, index) in random.category" :key="index+'c'">
+                        <h3 class="mb-3 pb-2 font-size-22" style="font-weight: 700;">{{item.category_name}}</h3>
+                        <div class="category-more">
+                            <!-- el-icon-arrow-right -->
+                            <router-link :to="'/category/' + item.id" class="">Дэлгэрэнгүй <i class="el-icon-arrow-right"></i></router-link>
                         </div>
-                    </div> -->
+
+                        <div class="navigator-button left" @click="prevSwiper('swiper'+item.id)">
+                            <i class="el-icon-arrow-left"></i>
+                        </div>
+                        <div class="navigator-button right" @click="nextSwiper('swiper'+item.id)">
+                            <i class="el-icon-arrow-right"></i>
+                        </div>
+                        <swiper
+                            :breakpoints="breakpoints"
+                            :space-between="10"
+                            :loop="true"
+                            :ref="'swiper'+item.id">
+                            <swiper-slide v-for="(item, index) in recently" :key="index" class="test">
+                                <div class="product-container">
+                                    <h5 class="mb-3 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
+
+                                    <div class="mb-2">
+                                        <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
+                                    </div>
+
+                                    <div class="flex-center-between mb-1 mt-5">
+                                        <div class="flex-center-between mb-1 product-actions">
+                                            <div v-if="item.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
+                                                <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(item.sale_price * ((100 - item.discount) / 100)).toLocaleString()}}</ins>
+                                                <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(item.sale_price).toLocaleString()}}</del>
+                                            </div>
+                                            <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
+                                                <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(item.sale_price).toLocaleString()}}</ins>
+                                                <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(item.sale_price / 100 * item.bonus_percent).toLocaleString()}}₮</ins>
+                                            </div>
+                                            <div class="d-none d-xl-block prodcut-add-cart">
+                                                <a href="javascript:;" @click="addCart([1, item])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </swiper-slide>
+                        </swiper>
+                    </div>
                 </div>
 
             </div>
@@ -1010,7 +709,7 @@
                 <div class="mb-6 mt-5">
                     <h3 class="mb-3 pb-2 font-size-22">Сүүлд үзсэн</h3>
                     <swiper
-                        :slides-per-view="6"
+                        :breakpoints="breakpoints"
                         :space-between="10"
                         :loop="true"
                         ref="swiper"
@@ -1082,6 +781,7 @@ export default {
     },
     data() {
         return {
+            tabPosition: 'recommended',
             showCountdown: false,
             slickSetting: {
                 "dots": true,
@@ -1130,7 +830,21 @@ export default {
             recently: [],
             banners: [],
             events: [],
-            eventIndex : -1
+            eventIndex : -1,
+            breakpoints: {
+                320: {
+                    slidesPerView: 2,
+                    spaceBetween: 10
+                },
+                640: {
+                    slidesPerView: 4,
+                    spaceBetween: 10
+                },
+                1200: {
+                    slidesPerView: 6,
+                    spaceBetween: 10
+                }
+            }
         }
     },
     mounted() {
@@ -1142,15 +856,48 @@ export default {
         clearInterval(timer);
         next();
     },
+    computed: {
+        fillRadio() {
+            if (this.tabPosition === 'recommended') {
+                return this.featured;
+            }
+
+            if (this.tabPosition === 'discounted') {
+                return this.discount;
+            }
+
+            return this.topRated;
+        }
+    },
     methods: {
-        getImageUrl (imageId) {
-            return `https://picsum.photos/600/400/?image=${imageId}`
+        nextSwiper(ref) {
+            
+            const swiper = this.$refs[ref];
+            
+            if (!swiper) {
+                return;
+            }
+
+
+            const selected = Array.isArray(swiper) ? swiper[0].swiperRef : swiper.swiperRef;
+
+            selected.slideNext();
+        },
+        prevSwiper(ref) {
+            const swiper = this.$refs[ref];
+            if (!swiper) {
+                return;
+            }
+
+            const selected = Array.isArray(swiper) ? swiper[0].swiperRef : swiper.swiperRef;
+
+            selected.slidePrev();
+        },
+        changeTab () {
+            this.$refs.tabswiper.swiperRef.update();
         },
         onSwiper (swiper) {
             console.log(swiper);
-            setTimeout(() => {
-                swiper.slideNext();
-            }, 5000);
         },
         onSlideChange () {
             console.log('slide change')
@@ -1450,7 +1197,6 @@ export default {
                 url: rts.$appUrl + '/api/home/home-page',
                 headers: {}
             }).then(function(data) {
-                console.log('====', data.data.quickCategory);
                 rts.homeBanner.list = data.data.homeBanner;  
                 rts.categories.sub = data.data.subCategory;  
                 rts.categories.main = data.data.category;  
@@ -1463,7 +1209,7 @@ export default {
                 rts.top.brand = data.data.topBrand;  
                 rts.top.product = data.data.topProduct; 
                 rts.banners = data.data.banners; 
-                rts.events = data.data.events; 
+                rts.events = data.data.events;
                 rts.fullscreenLoading = false;
                 data.data.specialProduct.length > 0 ? rts.special = data.data.specialProduct[0] : rts.special = '';
                 countdown = setInterval(rts.updateCountdown, 1000);

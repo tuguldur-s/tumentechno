@@ -402,9 +402,9 @@ export default {
                         if(c.id == element.id) {
                             c.discount = element.discount;
                             c.bonus = element.bonus_percent;
-                            if(c.qty > element.remain) {
-                                c.qty = element.remain;
-                            }
+                            // if(c.qty > element.remain) {
+                            //     c.qty = element.remain;
+                            // }
                         }
                     });
                 });
