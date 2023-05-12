@@ -163,7 +163,7 @@ exports.changeColor = async (req, res) => {
 exports.getCart = async (req ,res) => {
     const { products } = req.body;
     var more= ''; var district = ''; var khoroo = '';
-    let p = `SELECT remain, discount, bonus_percent, id from product WHERE id in(${products})`;
+    let p = `SELECT discount, bonus_percent, id from product WHERE id in(${products})`;
     db.query(p, async (err, product) => {
         if(err) {
             throw err;

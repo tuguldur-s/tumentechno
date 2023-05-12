@@ -10,8 +10,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en'
 import VueHtmlToPaper from 'vue-html-to-paper';
-// var AppURL = 'http://localhost:8015';
-var AppURL = 'https://api.tumentechno.mn';
+var AppURL = 'http://localhost:8015';
+// var AppURL = 'https://api.tumentechno.mn';
 
 Vue.config.productionTip = false
 Vue.prototype.$appUrl = AppURL;
