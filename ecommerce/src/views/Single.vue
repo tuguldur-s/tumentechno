@@ -131,7 +131,8 @@
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Тоо ширхэг</h6>
                                         <!-- Quantity -->
-                                        <el-input-number v-model="product.count" :min="1" :max="product.info.remain" size="small"></el-input-number>
+                                        <!-- :max="product.info.remain" -->
+                                        <el-input-number v-model="product.count" :min="1" size="small"></el-input-number>
                                         <!-- End Quantity -->
                                     </div>
                                     <div class="mb-3">
