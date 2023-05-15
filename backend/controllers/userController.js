@@ -214,7 +214,7 @@ exports.updatePassword = async (req, res) => {
 exports.VerifyEmail = async (req, res) => {
   const token  = req.query.token;
   if(!token) {
-    return res.redirect('https://www.itlab.mn/404');
+    return res.redirect('https://www.tumentechno.mn/404');
   }
 
   try {
@@ -225,12 +225,12 @@ exports.VerifyEmail = async (req, res) => {
       if(err) {
         throw err;
       }
-      return res.redirect('https://www.itlab.mn/login?sms=1');
+      return res.redirect('https://www.tumentechno.mn/login?sms=1');
     });
     
   } catch (err) {
     console.log(err);
-    return res.redirect('https://www.itlab.mn/404');
+    return res.redirect('https://www.tumentechno.mn/404');
   }
 }
 
