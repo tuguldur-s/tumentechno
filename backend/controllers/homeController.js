@@ -50,7 +50,7 @@ exports.home = async (req, res) => {
     // var dt = new Date();
     // var d = new Date(dt.setDate(dt.getDate() - 20));
     // console.log(d.toISOString());
-    let randCat = `SELECT id, category_name, image from category ORDER BY RAND() LIMIT 7`;
+    let randCat = `SELECT id, category_name, image from category WHERE id in (	SELECT type FROM product GROUP BY type HAVING COUNT(type) > 6 ) ORDER BY RAND() LIMIT 5`;
     let hBanner = `SELECT h.id, h.product_id, title_1, title_2, title_3, h.image, p.sale_price, p.discount, p.model from home_banner as h inner join product as p on h.product_id = p.id`;
     let cat = `SELECT id, category_name, image, icon from category ORDER BY category_name ASC`;
     let subCat = `SELECT categoryID, id, sub_category_name, specs from category_sub ORDER BY sub_category_name ASC`;
@@ -106,7 +106,6 @@ exports.home = async (req, res) => {
                                         }
                                         // let rand = `SELECT p.type, p.id, p.name, p.model, p.color_name, p.remain, p.sale_price, p.discount, p.image, p.bonus_percent, i.big_image1, i.big_image2, i.big_image3, i.big_image4 from images as i inner join product as p on p.image_id = i.id WHERE p.remain > 0 AND p.type in (${cId}) ORDER BY RAND()`;
                                         let rand = `SELECT p.type, p.id, p.name, p.model, p.color_name, p.remain, p.sale_price, p.discount, p.image, p.bonus_percent, i.big_image1, i.big_image2, i.big_image3, i.big_image4 from images as i inner join product as p on p.image_id = i.id WHERE p.type in (${cId}) ORDER BY RAND()`;
-                                        console.log(rand, '====');
                                         db.query(rand, async (err, random) => {
                                             if(err) {
                                                 throw err;
