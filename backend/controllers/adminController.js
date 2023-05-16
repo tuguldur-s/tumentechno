@@ -245,6 +245,7 @@ exports.updateProducts = async (req, res) => {
 }
 
 exports.downloadNewProduct = async (req, res) => {
+  
   var colors = ['BK','WH','BL','RD','GY','PK','GR','SL','GD','YL','OR','PU','DG','DB','BR','LC','LM','MN','CN','BKGR','WTGR','TH','RG','BKYL','CP','MC','MB','RR','TR','FG'];
   var config = {
     method: 'post',
@@ -255,17 +256,19 @@ exports.downloadNewProduct = async (req, res) => {
   };
   axios(config)
   .then(function (response) {
-    console.log(response, '====');
     let a = `SELECT enc_model from product`;
     db.query(a, async (err, products) => {
       if(err) {
         throw err;
       }
+
+      
       let bns = `SELECT percent from bonus_table`;
       db.query(bns, async (err, bonusP) => {
         if(err) {
           throw err;
         }
+
         var n = `INSERT INTO product (name, type, category_sub_id, sale_price, model, brand, description, color_name, remain, enc_model, created_at, updated_at, bonus_percent, discount_over, image) VALUES ?`;
         var rows = [];
         response.data.forEach(el => {

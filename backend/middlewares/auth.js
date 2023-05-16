@@ -15,6 +15,7 @@ module.exports = async (req, res, next) => {
         throw err;
       }
       if(result.length > 0) {
+        
         next();
       } else {
         return res.status(402).json({

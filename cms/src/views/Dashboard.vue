@@ -365,7 +365,15 @@
                         <div class="row align-items-center">
                           <div class="col">
                             <h3 class="mb-0">
-                              Үзүүлэлтүүд
+                              <!-- Үзүүлэлтүүд -->
+                              <el-select v-model="selectedsubcategories" filterable placeholder="Select" :style="{'width': '100%'}">
+                                  <el-option
+                                    v-for="item in subcategories"
+                                    :key="item.id"
+                                    :label="item.sub_category_name"
+                                    :value="item.id">
+                                  </el-option>
+                                </el-select>
                             </h3>
                           </div>
                           <div class="col text-right">
@@ -377,23 +385,18 @@
 
                       <div class="table-responsive" :style="{'max-height': '300px'}">
                         <base-table class="table align-items-center table-flush thead-light"
+                        style="overflow: hideen;"
                                     tbody-classes="list"
                                     :data="specials">
                           <template slot="columns">
                             <th :style="{'background': '#F6F9FC'}">Категори & бүртгэлтэй үзүүлэлт</th>
                           </template>
-                          <template>
-                                <td>
-                                  <el-select v-model="selectedsubcategories" filterable placeholder="Select" :style="{'width': '100%'}">
-                                    <el-option
-                                      v-for="item in subcategories"
-                                      :key="item.id"
-                                      :label="item.sub_category_name"
-                                      :value="item.id">
-                                    </el-option>
-                                  </el-select>
-                                </td>
-                          </template>
+
+                          <!-- <template slot="row">
+                              <td>
+                                
+                              </td>
+                          </template> -->
                         </base-table>
                       </div>
                       <div class="table-responsive" :style="{'max-height': '300px'}">
@@ -1632,7 +1635,6 @@
                     "Authorization": `Bearer ${token}`
                 }
             }).then(data => {
-              console.log(data.data);
               rts.count = data.data.count;
               let order = data.data.total_order;
               for (let i = 1; i <= 31; i++) {
@@ -1680,6 +1682,7 @@
               rts.events.list = data.data.events;
               rts.events.product = data.data.event_product;
               rts.calcRevenue();
+
             }).catch(err => {
               console.log(err);
                 // rts.$router.push('/error-page');
@@ -1688,8 +1691,11 @@
     },
     mounted() {
       this.initBigChart(0);
+      // this.getInfo();
+    },
+    created() {
       this.getInfo();
-    }
+    },
   };
 </script>
 <style></style>
