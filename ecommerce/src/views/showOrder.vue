@@ -309,8 +309,8 @@ export default {
             const rts = this;
             payment.createWidget ({
                 publicKey : "adye0j6o7mmz6d" ,
-                // sum : this.order.info.total_amount ,
-                sum: 10,
+                sum : this.order.info.total_amount ,
+                // sum: 10,
                 desc : "тестийн өгөгдөл" ,
                 trace : this.order.info.ordernumber ,
                 signature : "" ,
