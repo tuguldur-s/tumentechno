@@ -301,19 +301,35 @@ export default {
             });
         },
         showQr() {
+            if (this.order.info.status != 'pending') {
+                return;
+            }
             // this.dialogTableVisible = true;
-            var payment = new Unipay ()
+            var payment = new Unipay ();
+            const rts = this;
             payment.createWidget ({
                 publicKey : "adye0j6o7mmz6d" ,
                 // sum : this.order.info.total_amount ,
-                sum: 100,
+                sum: 10,
                 desc : "тестийн өгөгдөл" ,
                 trace : this.order.info.ordernumber ,
                 signature : "" ,
             });
             payment . success ( function ( params ) {
-                console . log ( 'Success' ) ;
-                console . log ( params ) ;
+                // console . log ( 'Success' ) ;
+                // console . log ( params ) ;
+
+                const token = localStorage.getItem('token');
+                rts.$axios({
+                    method: 'POST',
+                    url: rts.$appUrl + '/api/purchase/qpay-result',
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    },
+                    data: {
+                        invoiceId: params.trace
+                    }
+                });
             });
         },
         getInfo() {
@@ -341,8 +357,6 @@ export default {
                         // rts.dialogTableVisible = true;
                         checker = setInterval(rts.orderChecker, 5000);
                     }
-
-                    console.log(data, '====');
                     rts.showQr();
                 }
             }).catch(err => {

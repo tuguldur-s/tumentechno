@@ -66,95 +66,99 @@ async function checkQpayBill(invoice, token) {
 }
 
 exports.qpayWebhook = async (req, res) => {
-    // const { invoiceId } = req.query;
-    const invoiceId  = req.params.invoiceId;
+    const { invoiceId } = req.body;
+    // const invoiceId  = req.params.invoiceId;
+    console.log(invoiceId, '====');
+    let check = `SELECT user_id, total_amount, used_bonus, add_bonus, status from orders WHERE ordernumber = '${invoiceId}'`;
+    db.query(check, async (err, order) => {
+        if(err) {
+            throw err;
+        }
+        if(order.length > 0) {
+            if(order[0].status == 'pending') {
 
-    if(invoiceId.substring(0,2) == 'FF') {        
-        let responce = await requestToFF(invoiceId);
-        return res.json({
-            responce
-        });
-    } else if(invoiceId.substring(0,2) == 'PO') {        
-        let responce = await requestToPO(invoiceId);
-        return res.json({
-            responce
-        });
-    } else {
-        let token;
-        let ch = `SELECT token, expire from tokens WHERE organization = 'qpay'`;
-        db.query(ch, async (err, qt) => {
-            if(err) {
-                throw err;
-            }
-            if(qt.length > 0) {
-                var expire = new Date(qt[0].expire);
-                if(new Date() > expire) {
-                    token = await getToken();
-                } else {
-                    token = qt[0].token;
-                }
-                let check = `SELECT user_id, total_amount, used_bonus, add_bonus, status from orders WHERE ordernumber = '${invoiceId}'`;
-                db.query(check, async (err, order) => {
+                let up = `UPDATE users SET bonus = (bonus + ${order[0].add_bonus}) WHERE id = ${order[0].user_id}`;
+                db.query(up, async (err) => {
                     if(err) {
                         throw err;
                     }
-                    if(order.length > 0) {
-                        if(order[0].status == 'pending') {
-                            // нэхэмжлэх олдсон үед 
-                            let check = await checkQpayBill(invoiceId, token);
-                            let isPaid = check.payment_info.payment_status;
-                            let amount = check.goods_detail[0].unit_price;
-                            if(isPaid == 'PAID') {
-                                if(amount == order[0].total_amount) {
-                                    let up = `UPDATE users SET bonus = (bonus + ${order[0].add_bonus}) WHERE id = ${order[0].user_id}`;
-                                    db.query(up, async (err) => {
-                                        if(err) {
-                                            throw err;
-                                        }
-                                        let upOrder = `UPDATE orders SET status = 'paid' WHERE ordernumber = '${invoiceId}'`;
-                                        db.query(upOrder, async (err) => {
-                                            if(err) {
-                                                throw err;
-                                            }
-                                            res.json({
-                                                result: 'success',
-                                                message: 'Амжилттай'
-                                            });
-                                        });
-                                    });
-                                } else {
-                                    res.json({
-                                        result: 'failed',
-                                        message: 'Дутуу төлөлт'
-                                    });
-                                }
-                            } else {
-                                res.json({
-                                    result: 'failed',
-                                    message: 'Төлөгдөөгүй нэхэмжлэх'
-                                });
-                            }
-                        } else if(order[0].status == 'expired') {
-                            res.json({
-                                result: 'failed',
-                                message: 'Цуцлагдсан нэхэмжлэх'
-                            });
-                        } else {
-                            res.json({
-                                result: 'failed',
-                                message: 'Төлөгдсөн нэхэмжлэх'
-                            });
+                    let upOrder = `UPDATE orders SET status = 'paid' WHERE ordernumber = '${invoiceId}'`;
+                    db.query(upOrder, async (err) => {
+                        if(err) {
+                            throw err;
                         }
-                    } else {
                         res.json({
-                            result: 'fail',
-                            message: 'Нэхэмжлэх олдсонгүй'
+                            result: 'success',
+                            message: 'Амжилттай'
                         });
-                    }
+                    });
+                });
+                // нэхэмжлэх олдсон үед 
+                // let check = await checkQpayBill(invoiceId, token);
+                // let isPaid = check.payment_info.payment_status;
+                // let amount = check.goods_detail[0].unit_price;
+                // if(isPaid == 'PAID') {
+                //     if(amount == order[0].total_amount) {
+                        
+                //     } else {
+                //         res.json({
+                //             result: 'failed',
+                //             message: 'Дутуу төлөлт'
+                //         });
+                //     }
+                // } else {
+                //     res.json({
+                //         result: 'failed',
+                //         message: 'Төлөгдөөгүй нэхэмжлэх'
+                //     });
+                // }
+            } else if(order[0].status == 'expired') {
+                res.json({
+                    result: 'failed',
+                    message: 'Цуцлагдсан нэхэмжлэх'
+                });
+            } else {
+                res.json({
+                    result: 'failed',
+                    message: 'Төлөгдсөн нэхэмжлэх'
                 });
             }
-        });
-    }
+        } else {
+            res.json({
+                result: 'fail',
+                message: 'Нэхэмжлэх олдсонгүй'
+            });
+        }
+    });
+
+    // if(invoiceId.substring(0,2) == 'FF') {        
+    //     let responce = await requestToFF(invoiceId);
+    //     return res.json({
+    //         responce
+    //     });
+    // } else if(invoiceId.substring(0,2) == 'PO') {        
+    //     let responce = await requestToPO(invoiceId);
+    //     return res.json({
+    //         responce
+    //     });
+    // } else {
+    //     let token;
+    //     let ch = `SELECT token, expire from tokens WHERE organization = 'qpay'`;
+    //     db.query(ch, async (err, qt) => {
+    //         if(err) {
+    //             throw err;
+    //         }
+    //         if(qt.length > 0) {
+    //             var expire = new Date(qt[0].expire);
+    //             if(new Date() > expire) {
+    //                 token = await getToken();
+    //             } else {
+    //                 token = qt[0].token;
+    //             }
+                
+    //         }
+    //     });
+    // }
 }
 
 
