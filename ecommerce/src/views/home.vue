@@ -716,7 +716,7 @@
 
             <div class="bg-grey">
                 <div class="container pb-5">
-                    <img style="width: 100%; height: auto;" :src="$appUrl+'/images/special/'+special.name" alt="">
+                    <router-link :to="'/single-product/'+special.product_id"><img style="width: 100%; height: auto;" :src="$appUrl+'/images/special/'+special.name" alt=""></router-link>
 
                     <div class="mb-6 mt-5" v-if="recently.length > 0">
                         <h3 class="mb-3 pb-2 font-size-22">Сүүлд үзсэн</h3>
