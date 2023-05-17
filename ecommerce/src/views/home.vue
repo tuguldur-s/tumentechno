@@ -151,6 +151,14 @@
     }
 }
 
+.bg-grey {
+    background-color: #F8F8F8;
+
+    .swiper-slide {
+        background: #fff;
+    }
+}
+
 @media (max-width: 1200px) {
     .resp-logo {
         content: url('../assets/images/logo/itlabwhite.png');
@@ -654,7 +662,7 @@
                 </div>
             </div>
             
-            <div class="products-group-4-1-4 space-1">
+            <div class="products-group-4-1-4 space-1 bg-grey">
                 <div class="container">
                     <div class="mb-6 mt-5 catogory-grp" v-for="(item, index) in random.category" :key="index+'c'">
                         <h3 class="mb-3 pb-2 font-size-22" style="font-weight: 700;">{{item.category_name}}</h3>
@@ -674,7 +682,8 @@
                             :space-between="10"
                             :loop="true"
                             :ref="'swiper'+item.id">
-                            <swiper-slide v-for="(item, index) in filterRandProduct(item.id)" :key="index" class="test">
+                            <!-- filterRandProduct(item.id) -->
+                            <swiper-slide v-for="(item, index) in fillRadio" :key="index" class="test">
                                 <div class="product-container">
                                     <h5 class="mb-3 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
 
@@ -705,46 +714,46 @@
 
             </div>
 
-            <div class="container">
-                hello
-            </div>
-            
-            <div class="container">
-                <div class="mb-6 mt-5">
-                    <h3 class="mb-3 pb-2 font-size-22">Сүүлд үзсэн</h3>
-                    <swiper
-                        :breakpoints="breakpoints"
-                        :space-between="10"
-                        :loop="true"
-                        ref="swiper"
-                        @swiper="onSwiper"
-                        @slideChange="onSlideChange">
-                        <swiper-slide v-for="(item, index) in recently" :key="index" class="test">
-                            <div class="product-container">
-                                <h5 class="mb-1 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
+            <div class="bg-grey">
+                <div class="container pb-5">
+                    <img style="width: 100%; height: auto;" :src="$appUrl+'/images/special/'+special.name" alt="">
 
-                                <div class="mb-2">
-                                    <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
-                                </div>
+                    <div class="mb-6 mt-5" v-if="recently.length > 0">
+                        <h3 class="mb-3 pb-2 font-size-22">Сүүлд үзсэн</h3>
+                        <swiper
+                            :breakpoints="breakpoints"
+                            :space-between="10"
+                            :loop="true"
+                            ref="swiper"
+                            @swiper="onSwiper"
+                            @slideChange="onSlideChange">
+                            <swiper-slide v-for="(item, index) in recently" :key="index" class="test">
+                                <div class="product-container">
+                                    <h5 class="mb-1 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
 
-                                <div class="flex-center-between mb-1">
-                                    <div class="flex-center-between mb-1 product-actions">
-                                        <div v-if="item.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                            <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(item.sale_price * ((100 - item.discount) / 100)).toLocaleString()}}</ins>
-                                            <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(item.sale_price).toLocaleString()}}</del>
-                                        </div>
-                                        <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                            <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(item.sale_price).toLocaleString()}}</ins>
-                                            <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(item.sale_price / 100 * item.bonus_percent).toLocaleString()}}₮</ins>
-                                        </div>
-                                        <div class="d-none d-xl-block prodcut-add-cart">
-                                            <a href="javascript:;" @click="addCart([1, item])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                    <div class="mb-2">
+                                        <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
+                                    </div>
+
+                                    <div class="flex-center-between mb-1">
+                                        <div class="flex-center-between mb-1 product-actions">
+                                            <div v-if="item.discount > 0" class="prodcut-price d-flex align-items-center flex-wrap position-relative">
+                                                <ins class="font-size-20 text-red text-decoration-none mr-2">₮{{Number(item.sale_price * ((100 - item.discount) / 100)).toLocaleString()}}</ins>
+                                                <del class="font-size-12 tex-gray-6 position-absolute bottom-100" style="top: -9px;">₮{{Number(item.sale_price).toLocaleString()}}</del>
+                                            </div>
+                                            <div v-else class="prodcut-price d-flex align-items-center flex-wrap position-relative">
+                                                <ins class="font-size-20 text-decoration-none mr-2">₮{{Number(item.sale_price).toLocaleString()}}</ins>
+                                                <ins class="font-size-12 text-decoration-none tex-gray-6 position-absolute bottom-100" style="top: -9px; vertical-align: middle;"><i class="fas fa-gift"></i> {{Number(item.sale_price / 100 * item.bonus_percent).toLocaleString()}}₮</ins>
+                                            </div>
+                                            <div class="d-none d-xl-block prodcut-add-cart">
+                                                <a href="javascript:;" @click="addCart([1, item])" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </swiper-slide>
-                    </swiper>
+                            </swiper-slide>
+                        </swiper>
+                    </div>
                 </div>
             </div>
         </main>

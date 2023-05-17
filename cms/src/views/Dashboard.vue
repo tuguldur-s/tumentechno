@@ -281,7 +281,7 @@
                             </h3>
                           </div>
                           <div class="col text-right">
-                            <base-button type="primary" size="sm">See all</base-button>
+                            <base-button @click="modals.newSpecial = true" type="primary" size="sm">Бүртгэх</base-button>
                           </div>
                         </div>
                       </div>
@@ -296,18 +296,12 @@
                           </template>
 
                           <template slot-scope="{row}">
-                            <th scope="row">
+                            <td scope="row" style="left: 50%; position: relative; transform: translateX(-50%);">
                               <div class="media align-items-center">
-                                <a href="#" class="mr-3">
-                                  <img alt="Image" :style="{'width': '50px', 'height': 'auto'}" :src="$appUrl+'/images/product/'+row.image">
+                                <a href="#">
+                                  <img alt="Image" :style="{'width': '100%', 'height': 'auto'}" :src="$appUrl+'/images/special/'+row.name">
                                 </a>
-                                <div class="media-body">
-                                  <span class="name mb-0 text-sm">{{row.name}}</span>
-                                </div>
                               </div>
-                            </th>
-                            <td class="text-right">
-                              <base-button type="danger" @click="modals.newSpecial = true" size="sm">Бүтээгдэхүүн солих</base-button>
                             </td>
                           </template>
                         </base-table>
@@ -528,68 +522,12 @@
         <modal :show.sync="modals.newSpecial">
             <h6 slot="header" class="modal-title" id="modal-title-default">Шинэ урамшуулалтай бүтээгдэхүүн хадгалах</h6>
               <div class="row">
-                <div class="col-md-6">
-                    <base-input placeholder="Бүтээгдэхүүний нэр" v-model="newSpecial.name" required></base-input>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <base-input placeholder="Бүтээгдэхүүний модель" v-model="newSpecial.model" required></base-input>
                 </div>
-                <div class="col-md-6">
-                    <base-input placeholder="Зарах үнэ" type="number" v-model="newSpecial.price" required></base-input>
-                </div>
-                <div class="col-md-6">
-                    <base-input placeholder="Хямдруулах хувь" type="number" v-model="newSpecial.sale" required></base-input>
-                </div>
-                <div class="col-md-6">
-                    <base-input placeholder="Бонус" type="number" v-model="newSpecial.bonus" required></base-input>
-                </div>
-                <div class="col-md-6">
-                    <base-input placeholder="Тоо ширхэг" v-model="newSpecial.qty" type="number" required></base-input>
-                </div>
-                <div class="col-md-6">
-                    <el-select v-model="newSpecial.brand" filterable placeholder="Брэнд" style="width: 100%;">
-                      <el-option
-                        v-for="item in brands"
-                        :key="item.id"
-                        :label="item.brandname"
-                        :value="item.id">
-                      </el-option>
-                    </el-select>
-                </div>
-                <div class="col-md-6">
-                    <el-select v-model="newSpecial.category" filterable placeholder="Категори" style="width: 100%;">
-                      <el-option
-                        v-for="item in categories"
-                        :key="item.id"
-                        :label="item.category_name"
-                        :value="item.id">
-                      </el-option>
-                    </el-select>
-                </div>
-                <div class="col-md-6 mt-4">
-                    <el-select v-model="newSpecial.subCategory" filterable placeholder="Дэд категори" style="width: 100%;">
-                      <el-option
-                        v-for="item in selectSub()"
-                        :key="item.id"
-                        :label="item.sub_category_name"
-                        :value="item.id">
-                      </el-option>
-                    </el-select>
-                </div>
-                <div class="col-md-6 mt-4">
-                  <base-input addon-left-icon="ni ni-calendar-grid-58">
-                      <flat-picker slot-scope="{focus, blur}"
-                                  @on-open="focus"
-                                  @on-close="blur"
-                                  :config="{allowInput: true}"
-                                  class="form-control datepicker"
-                                  v-model="newSpecial.end_at">
-                      </flat-picker>
-                  </base-input>
-                </div>
-              </div>
-              <div class="col-md-12">
+                <div class="col-md-12">
                     <base-input placeholder="Зураг" type="file" @change="addSpecialImage" required></base-input>
+                </div>
               </div>
 
               <template slot="footer">
@@ -1393,7 +1331,7 @@
         var rts = this;
         const token = localStorage.getItem('token');
         var s = this.newSpecial;
-        if(s.name != '' && s.model != '' && s.price != 0 && s.sale != 0 && s.bonus != 0 && s.qty != 0 && s.image != '' && s.brand != '' && s.category != '' && s.subCategory != '') {
+        if(s.model != '') {
           const fd = new FormData();
           fd.append('photo', this.newSpecial.image, this.newSpecial.image.name);
           fd.append('info', JSON.stringify(this.newSpecial));
@@ -1405,15 +1343,28 @@
               }
             }
           ).then(data => {
-            rts.specials[0].name = s.name;
-            rts.specials[0].image = data.data.image;
+            if (data.data.result == 'failed') {
+              rts.$notify({
+                title: 'Амжилтгүй',
+                message: `Бүтээгдэхүүн олдсонгүй`,
+                type: 'danger'
+              });
+              return;
+            }
+
+
+            if (rts.specials.length > 0) {
+              rts.specials[0].image = data.data.image;
+            } else {
+              rts.specials.push({image: data.data.image})
+            }
+            // rts.specials[0].name = s.model;
+            // rts.specials[0].image = data.data.image;
             rts.$notify({
               title: 'Амжилттай',
               message: `Онцгой бүтээгдэхүүн шинэчлэгдлээ`,
               type: 'success'
             });
-          }).catch(err => {
-            console.log(err);
           });
         } else {
           rts.$notify({

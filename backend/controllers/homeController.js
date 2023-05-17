@@ -60,7 +60,8 @@ exports.home = async (req, res) => {
     let discount = `SELECT p.model, p.name, p.color_name, c.category_name, p.image, p.sale_price, p.discount, p.type, p.id, p.remain, p.discount_end_time, p.bonus_percent from product as p inner join category as c on p.type = c.id WHERE discount_over = false AND discount > 0 ORDER BY RAND() LIMIT 8`;
     // let topRated = `SELECT p.id, p.type, p.color_name, c.category_name, p.model, p.name, p.sale_price, p.image, p.total_rate, p.discount, p.bonus_percent from product as p inner join category as c on p.type = c.id WHERE p.remain > 0 ORDER BY RAND() DESC LIMIT 8`
     let topRated = `SELECT p.id, p.type, p.color_name, c.category_name, p.model, p.name, p.sale_price, p.image, p.total_rate, p.discount, p.bonus_percent from product as p inner join category as c on p.type = c.id ORDER BY RAND() DESC LIMIT 8`
-    let special = `SELECT id, image, sale_price, remain, discount, discount_end_time, bonus_percent, name, model, color_name from product WHERE id = 1`;
+    // let special = `SELECT id, image, sale_price, remain, discount, discount_end_time, bonus_percent, name, model, color_name from product WHERE id = 1`;
+    const special = `SELECT name, product_id FROM special_offer WHERE stat = 1`;
     let bnns = `SELECT id, title, description, image, subId from banners`;
     let ev = `SELECT id, event_name, image from events`;
     let cId = [0];

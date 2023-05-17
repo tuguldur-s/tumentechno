@@ -94,32 +94,52 @@ exports.updateSpecial = async (req, res) => {
   
   const time = Date.now();
   const image_name = time + "." + type;
-  
-  let c = `SELECT image from product WHERE id = 1`;
+  let c = `SELECT id from product WHERE enc_model = '${info.model}'`;
+
   db.query(c, async (err, check) => {
-    if(err) {
+    if (err) {
       throw err;
     }
-    if(check[0].image != 'no-image.jpg') {
-      if(fs.existsSync("./public/images/product/" + check[0].image)){
-        fs.unlinkSync("./public/images/product/" + check[0].image); 
-      }
-    }
-    image.mv("./public/images/product/" + image_name, function (err) {
-      if(err) {
-        throw err;
-      }
-      let up = `UPDATE product SET image = '${image_name}', name = '${info.name}', model = '${info.model}', sale_price = ${info.price}, bonus_percent = ${info.bonus}, remain = ${info.qty}, discount = ${info.sale}, discount_end_time = '${info.end_at}', brand = ${info.brand}, type = ${info.category}, category_sub_id = ${info.subCategory}, updated_at = '${new Date()}' WHERE id = 1`;
-      db.query(up, async err => {
-        if(err) {
+
+    if (check.length > 0) {
+      const name = `SELECT name FROM special_offer WHERE stat = 1`;
+
+      db.query(name, async (err, pt) => {
+        if (err) {
           throw err;
         }
-        res.json({
-          result: 'success',
-          image: image_name
+
+        if (pt.length > 0) {
+          if(fs.existsSync("./public/images/special/" + pt[0].name)){
+            fs.unlinkSync("./public/images/special/" + pt[0].name); 
+          }
+        }
+
+        
+
+        image.mv("./public/images/special/" + image_name, function (err) {
+          if (err) {
+            throw err;
+          }
+
+          const update = `UPDATE special_offer SET name = '${image_name}', product_id = '${check[0].id}'`;
+          db.query(update, async err => {
+            if (err) {
+              throw err;
+            }
+            res.json({
+              result: 'success',
+              image: image_name
+            });
+          });
         });
+
       });
-    });
+    } else {
+      res.json({
+        result: 'failed'
+      });
+    }
   });
 }
 
@@ -1513,7 +1533,7 @@ exports.dashboard = async (req, res) => {
     let sp = `SELECT name, image, remain, model, discount FROM product WHERE id = 1`;
     let ct = `SELECT category_name, image, id, icon from category`;
     let br = `SELECT brandname, images, id, bg from brands`;
-    let spe = `SELECT name, image, remain, discount from product WHERE id = 1`;
+    let spe = `SELECT name, product_id from special_offer WHERE stat = 1`;
     let bn = `SELECT title_1, title_2, title_3, image, product_id, id from home_banner`;
     let sub = `SELECT sub_category_name, id, specs, categoryID from category_sub`;
     let bann = `SELECT title, id, image from banners`;
