@@ -683,7 +683,7 @@
                             :loop="true"
                             :ref="'swiper'+item.id">
                             <!-- filterRandProduct(item.id) -->
-                            <swiper-slide v-for="(item, index) in fillRadio" :key="index" class="test">
+                            <swiper-slide v-for="(item, index) in filterRandProduct(item.id)" :key="index" class="test">
                                 <div class="product-container">
                                     <h5 class="mb-3 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
 
