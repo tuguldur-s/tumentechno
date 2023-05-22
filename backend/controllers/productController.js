@@ -1343,7 +1343,6 @@ exports.Event = async (req, res) => {
 
 exports.Category = async (req, res) => {
     const { id, page, brand, color, price, sub, specs } = req.body;
-    
     Date.prototype.subDays = function(days) {
         var date = new Date(this.valueOf());
         date.setDate(date.getDate() - days);
@@ -1389,7 +1388,6 @@ exports.Category = async (req, res) => {
     if(sub.length > 0) {
         p += ` AND category_sub_id in (${sub})`
     }
-
     if(specs != '') {
         var allId = [];
         var spQuery = `SELECT product_id from specs WHERE ${specs}`;
@@ -1508,6 +1506,8 @@ exports.Category = async (req, res) => {
             
         });
     } else {
+
+        
         db.query(p, async (err, product) => {
             if(err) {
                 throw err;
@@ -1559,7 +1559,7 @@ exports.Category = async (req, res) => {
                                                 });
                                             }
                                         });
-                                        if(spcs != []) {
+                                        if(spcs.length > 0) {
                                             let s = `select ${spcs} from specs as s inner join product as p on s.product_id = p.id inner join category_sub as c on p.category_sub_id = c.id WHERE c.id in (${cateId}) AND (p.remain > 0 OR p.updated_at > '${dt}')`
                                             db.query(s, async (err, specs) => {
                                                 if(err) {

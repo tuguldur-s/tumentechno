@@ -226,7 +226,8 @@
                                                         <div class="product-item__body pb-xl-2">
                                                             <div class="mb-2"><router-link :to="'/category/'+item.type" class="font-size-12 text-gray-5">{{item.category_name}}</router-link></div>
                                                             <h5 class="mb-1 product-item__title"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
-                                                            <div class="mb-2">
+                                                            <div class="mb-2" style="position: relative;">
+                                                                <div class="sold" v-if="item.remain === 0">Дууссан</div>
                                                                 <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" alt="Image Description"></router-link>
                                                             </div>
                                                             <div class="flex-center-between mb-1">
@@ -260,7 +261,8 @@
                                                 <div class="product-item__outer w-100">
                                                     <div class="product-item__inner remove-prodcut-hover py-4 row">
                                                         <div class="product-item__header col-6 col-md-3">
-                                                            <div class="mb-2">
+                                                            <div class="mb-2" style="position: relative;">
+                                                                <div class="sold" v-if="item.remain === 0">Дууссан</div>
                                                                 <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :style="{'width': '180px', 'height': 'auto'}" alt="Image Description"></router-link>
                                                             </div>
                                                         </div>

@@ -634,9 +634,10 @@
                             <swiper-slide v-for="(item, index) in fillRadio" :key="index" class="test">
                                 <div class="product-container">
                                     <h5 class="mb-3 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
-
-                                    <div class="mb-2">
-                                        <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
+                                    <div class="mb-2" style="position: relative;">
+                                        <div class="sold" v-if="item.remain === 0">Дууссан</div>
+                                        <router-link :to="'/single-product/'+item.id" class="d-block text-center">
+                                        <img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
                                     </div>
 
                                     <div class="flex-center-between mb-1 mt-5">
@@ -687,7 +688,8 @@
                                 <div class="product-container">
                                     <h5 class="mb-3 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
 
-                                    <div class="mb-2">
+                                    <div class="mb-2" style="position: relative;">
+                                        <div class="sold" v-if="item.remain === 0">Дууссан</div>
                                         <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
                                     </div>
 
@@ -731,7 +733,8 @@
                                 <div class="product-container">
                                     <h5 class="mb-1 product-name"><router-link :to="'/single-product/'+item.id" class="text-blue font-weight-bold">{{item.model}} {{item.name}}</router-link></h5>
 
-                                    <div class="mb-2">
+                                    <div class="mb-2" style="position: relative;">
+                                        <div class="sold" v-if="item.remain === 0">Дууссан</div>
                                         <router-link :to="'/single-product/'+item.id" class="d-block text-center"><img class="img-fluid" :src="$appUrl+'/images/product/'+item.image" :alt="item.name"></router-link>
                                     </div>
 
